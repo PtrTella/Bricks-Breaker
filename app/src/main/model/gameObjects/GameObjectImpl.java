@@ -2,7 +2,7 @@ package main.model.gameObjects;
 
 import main.common.*;
 
-public abstract class GameObject {
+public abstract class GameObjectImpl {
     
     public static enum Type { BALL, BRICK, BAR, POWERUP }
 
