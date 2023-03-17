@@ -1,4 +1,4 @@
-package main.model;
+package main.model.gameObjects;
 
 import main.common.*;
 
@@ -7,12 +7,12 @@ public abstract class GameObject {
     public static enum Type { BALL, BRICK, BAR, POWERUP }
 
     private Type type;
-	//private Color color;
+	private Image skin;
 	private P2d pos;
 	private V2d vel;
 	private BoundingBox bbox;
 
-    public GameObject(Type type, P2d pos, V2d vel, BoundingBox box){
+    public GameObject(final Type type, final P2d pos, final V2d vel, final BoundingBox box){
 		this.type = type;
 		this.pos = pos;
 		this.vel = vel;
@@ -35,11 +35,11 @@ public abstract class GameObject {
 		return bbox;
 	}
 
-    public void setPos(P2d pos){
+    public void setPos(final P2d pos){
 		this.pos = pos;
 	}
 
-	public void setVel(V2d vel){
+	public void setVel(final V2d vel){
 		this.vel = vel;
 	}
 
@@ -49,5 +49,9 @@ public abstract class GameObject {
 
 	public void flipVelOnX(){
 		this.vel = new V2d(-vel.x, vel.y);
+	}
+
+	public void update(final long dt) {
+
 	}
 }
