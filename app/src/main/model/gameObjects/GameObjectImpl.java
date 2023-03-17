@@ -2,7 +2,7 @@ package main.model.gameObjects;
 
 import main.common.*;
 
-public abstract class GameObjectImpl {
+public abstract class GameObjectImpl implements GameObject{
     
     public static enum Type { BALL, BRICK, BAR, POWERUP }
 
@@ -23,24 +23,32 @@ public abstract class GameObjectImpl {
         return type;
     }
 
-    public P2d getPos() {
+	public void setType(final Type typeToSet) {
+		this.type = typeToSet;
+	}
+
+    public P2d getPosition() {
         return pos;
     }
 
-    public V2d getVel() {
-        return vel;
-    }
-
-    public BoundingBox getBBox(){
-		return bbox;
-	}
-
-    public void setPos(final P2d pos){
+	public void setPosition(final P2d pos){
 		this.pos = pos;
 	}
 
-	public void setVel(final V2d vel){
+    public V2d getSpeed() {
+        return vel;
+    }
+
+	public void setSpeed(final V2d vel){
 		this.vel = vel;
+	}
+
+    public BoundingBox getBoundingBox(){
+		return bbox;
+	}
+
+	public void setBoundingBox(final BoundingBox boxToSet) {
+		this.bbox = boxToSet;
 	}
 
 	public void flipVelOnY(){
