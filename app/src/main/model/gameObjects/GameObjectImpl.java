@@ -1,18 +1,16 @@
 package main.model.gameObjects;
 
 import main.common.*;
+import main.model.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject {
-    
-    public static enum Type { BALL, BRICK, BAR, POWERUP }
 
     private Type type;
-	private Image skin;
 	private P2d pos;
 	private V2d vel;
 	private BoundingBox bbox;
 
-    public GameObject(final Type type, final P2d pos, final V2d vel, final BoundingBox box){
+    public GameObjectImpl(final Type type, final P2d pos, final V2d vel, final BoundingBox box){
 		this.type = type;
 		this.pos = pos;
 		this.vel = vel;
