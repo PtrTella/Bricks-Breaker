@@ -11,4 +11,8 @@ public interface GameStateController extends Controller {
     void render();
 
     void updateGame(final int elapsed);
+
+    void quitGame();
+
+    void pauseGame();
 }
