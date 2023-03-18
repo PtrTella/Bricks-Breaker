@@ -1,8 +1,8 @@
-package model.main.gameObjects.bounding;
+package main.model.gameObjects.bounding;
 
 import javafx.geometry.Rectangle2D;
 
-public abstract BoundingBoxImpl implements BoundingBox {
+public abstract class BoundingBoxImpl implements BoundingBox {
     
     private Rectangle2D collider;
 
