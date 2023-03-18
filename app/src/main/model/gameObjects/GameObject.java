@@ -1,6 +1,7 @@
-package main.model.gameObject;
+package main.model.gameObjects;
 
 import main.common.*;
+import main.model.BoundingBox;
 
 public interface GameObject {
 
