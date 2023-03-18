@@ -45,6 +45,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     @Override
     public void init() {
         this.eventListener = new WorldEventListenerImpl();
+        this.eventListener.setGameState(getModel());
     }
     
 }
