@@ -2,6 +2,8 @@ package main.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import main.model.gameObjects.Brick;
+import main.model.gameObjects.GameObject;
 
 public class World {
     
@@ -17,4 +19,8 @@ public class World {
     }
 
     public void updateState(long dt){}
+
+    public List<Brick> getBricks() {
+        return this.brick;
+    }
 }
