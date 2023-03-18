@@ -1,4 +1,4 @@
-package main.model;
+package main.model.gameObjects;
 
 import main.common.P2d;
 import main.common.V2d;
