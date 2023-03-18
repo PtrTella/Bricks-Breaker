@@ -93,5 +93,15 @@ public class GameStateImpl implements GameState {
             this.gameOver = true;
         }
     }
+
+    @Override
+    public TimerThread getGameTimerThread() {
+        return this.gameTimerThread;
+    }
+
+    @Override
+    public Timer getGameTimer() {
+        return this.gameTimer;
+    }
      
 }

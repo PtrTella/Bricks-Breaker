@@ -1,5 +1,8 @@
 package main.model;
 
+import main.model.timer.Timer;
+import main.model.timer.TimerThread;
+
 /**
  * This is the definition of a game state, which is
  * the current game match state.
@@ -60,4 +63,16 @@ public interface GameState {
      * if the player does not have any 'life' to use.
      */
     void checkGameOver();
+
+    /**
+     * This method returns the game timer thread.
+     * @return a TimerThread object which is the current game state timer thread.
+     */
+    TimerThread getGameTimerThread();
+
+    /**
+     * This method returns the game timer.
+     * @return a Timer object which is the current game timer, that contains the remaining time.
+     */
+    Timer getGameTimer();
 }
