@@ -1,62 +1,97 @@
 package main.model;
 
+import main.model.timer.Timer;
+import main.model.timer.TimerImpl;
+import main.model.timer.TimerThread;
+
+/**
+ * This is the implementation of a game state.
+ * For further informations, see the GameState interface documentation.
+*/
 public class GameStateImpl implements GameState {
+
+    private static final int TIME = 300;
 
     private World currentWorld;
     private int score = 0;
     private boolean gameOver = false;
+    private Timer gameTimer;
+    private TimerThread gameTimerThread;
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'init'");
+    public final void init() {
+        this.gameTimer = new TimerImpl(GameStateImpl.TIME);
+        this.gameTimerThread = new TimerThread(this.gameTimer);
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public World getWorld() {
+    public final World getWorld() {
         return this.currentWorld;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void setWorld(World newGameWorld) {
+    public final void setWorld(final World newGameWorld) {
         this.currentWorld = newGameWorld;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public int getScore() {
+    public final int getScore() {
         return this.score;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void incScore(final int increment) {
+    public final void incScore(final int increment) {
         this.score += increment;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void decScore(final int decrement) {
+    public final void decScore(final int decrement) {
         this.score -= decrement;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void updateGame(int elapsed) {
+    public final void updateGame(final int elapsed) {
         this.currentWorld.updateState(elapsed);
         this.checkGameOver();
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void setGameOver(boolean gameOverState) {
-        this.gameOver = gameOverState;
-    }
-
-    @Override
-    public boolean getGameOver() {
+    public final boolean isGameOver() {
         return this.gameOver;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
-    public void checkGameOver() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkGameOver'");
+    public final void checkGameOver() {
+        if (gameTimer.getTime().getTotal() == 0) {
+            this.gameOver = true;
+        }
     }
      
 }
