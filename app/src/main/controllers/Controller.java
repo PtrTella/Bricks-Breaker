@@ -7,7 +7,7 @@ public interface Controller {
 
     void setModel(final GameState modelToAttach);
 
-    GameState getState();
+    GameState getModel();
 
     void setView(final View viewToAttach);
 
