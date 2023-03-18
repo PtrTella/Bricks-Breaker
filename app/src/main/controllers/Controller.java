@@ -1,6 +1,7 @@
 package main.controllers;
 
 import main.model.GameState;
+import main.view.View;
 
 public interface Controller {
 
