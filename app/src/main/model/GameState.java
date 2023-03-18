@@ -1,29 +1,24 @@
 package main.model;
 
-import main.core.GameFactory;
+public interface GameState {
 
-public class GameState {
-    
-    //private int score;	depends on type of game
-	private World world;
+    void init();
 
-    public GameState(){
+    World getWorld();
 
-        GameFactory f = GameFactory.getInstance();
-		
-        world = new World();
-        //world.add();
-    }
+    void setWorld(final World newGameWorld);
 
-    public World getWorld(){
-		return world;
-	}
+    int getScore();
 
-    public boolean isGameOver(){
-		return true;
-	}
+    void incScore(final int increment);
 
-    public void update(int dt){
-		world.updateState(dt);
-	}
+    void decScore(final int decrement);
+
+    void updateGame(final int elapsed);
+
+    void setGameOver(final boolean gameOver);
+
+    boolean getGameOver();
+
+    void checkGameOver();
 }
