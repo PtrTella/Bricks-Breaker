@@ -14,5 +14,11 @@ public class Brick extends GameObjectImpl {
         this.life = life;
         this.powerUp = powerUp;
     }
+
+    @Override
+    public void update(long dt) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
     
 }
