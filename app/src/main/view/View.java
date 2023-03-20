@@ -1,7 +1,5 @@
 package main.view;
 
-import javax.print.attribute.standard.PagesPerMinute;
-
 import javafx.stage.Stage;
 import main.controllers.Controller;
 
@@ -27,7 +25,7 @@ public interface View {
      * the current view.
      */
     void setController(final Controller controllerToAttach);
-    
+
     Stage getStage();
 
     void setStage(final Stage stageToSet);
