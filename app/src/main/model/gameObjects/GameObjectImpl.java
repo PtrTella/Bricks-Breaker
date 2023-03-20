@@ -1,7 +1,7 @@
 package main.model.gameObjects;
 
 import main.common.*;
-import main.model.BoundingBox;
+import main.model.gameObjects.bounding.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject {
 
