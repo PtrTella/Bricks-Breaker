@@ -1,5 +1,8 @@
 package main.model;
 
+import java.util.List;
+import main.model.gameObjects.Ball;
+import main.model.gameObjects.Brick;
 import main.controllers.state.event.WorldEventListener;
 
 public interface World {
@@ -13,4 +16,8 @@ public interface World {
     void checkRespawn();
 
     void checkBoundary();
+
+    List<Brick> getBricks();
+
+    List<Ball> getBalls();
 }
