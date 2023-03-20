@@ -72,7 +72,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public final void updateGame(final int elapsed) {
-        this.currentWorld.updateState(elapsed);
+        this.currentWorld.updateGame(elapsed);
         this.checkGameOver();
     }
 
