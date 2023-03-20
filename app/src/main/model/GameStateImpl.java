@@ -103,5 +103,10 @@ public class GameStateImpl implements GameState {
     public Timer getGameTimer() {
         return this.gameTimer;
     }
+
+    @Override
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
      
 }
