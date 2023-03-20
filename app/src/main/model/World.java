@@ -1,26 +1,16 @@
 package main.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import main.model.gameObjects.Brick;
-import main.model.gameObjects.GameObject;
+import main.controllers.state.event.WorldEventListener;
 
-public class World {
-    
-    private List<GameObject> ball;
-    private List<Brick> brick;
-    private GameObject bar;
-    private List<GameObject> powerUp;
+public interface World {
 
-    public World(){
-        ball = new ArrayList<GameObject>();
-        brick = new ArrayList<Brick>();
-        powerUp = new ArrayList<GameObject>();
-    }
+    void setEventListener(final WorldEventListener listener);
 
-    public void updateState(long dt){}
+    void updateGame(final int elapsed);
 
-    public List<Brick> getBricks() {
-        return this.brick;
-    }
+    void checkCollision();
+
+    void checkRespawn();
+
+    void checkBoundary();
 }
