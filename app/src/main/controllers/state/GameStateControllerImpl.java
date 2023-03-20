@@ -7,6 +7,14 @@ import main.controllers.state.event.WorldEventListenerImpl;
 public class GameStateControllerImpl extends ControllerImpl implements GameStateController {
 
     private WorldEventListener eventListener;
+    private boolean pause;
+    private boolean quit;
+
+    public GameStateControllerImpl() {
+        super();
+        this.pause = false;
+        this.quit = false;
+    }
     
     @Override
     public void processCommands() {
@@ -26,19 +34,22 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
 
     @Override
     public void updateGame(final int elapsed) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateGame'");
+        this.getModel().updateGame(elapsed);
+        this.getModel().getWorld().checkBoundary();
+        this.processEvents();
+        this.getModel().getWorld().checkCollision();
+        this.processEvents();
     }
 
     @Override
     public void quitGame() {
         this.getModel().setGameOver(true);
+        this.quit = true;
     }
 
     @Override
     public void pauseGame() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'pauseGame'");
+        this.pause = !this.pause;
     }
 
     @Override
