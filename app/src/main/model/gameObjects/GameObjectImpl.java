@@ -24,7 +24,7 @@ public abstract class GameObjectImpl implements GameObject {
 	public void setLifes(final int lifesToSet) {
 		this.lifes = lifesToSet;
 	}
-	
+
     public Type getType() {
         return type;
     }
@@ -65,7 +65,5 @@ public abstract class GameObjectImpl implements GameObject {
 		this.vel = new V2d(-vel.x, vel.y);
 	}
 
-	public void update(final long dt) {
-
-	}
+	public abstract void update(final long dt);
 }
