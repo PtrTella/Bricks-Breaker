@@ -52,6 +52,12 @@ public interface GameState {
     void updateGame(final int elapsed);
 
     /**
+     * This method sets the current game as over.
+     * @param gameOver true, if the current game state as over, otherwise false.
+     */
+    void setGameOver(final boolean gameOver);
+
+    /**
      * This method checks if the current game is over.
      * @return true, if it's game over, otherwise false.
      */
