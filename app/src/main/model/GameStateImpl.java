@@ -23,6 +23,8 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public final void init() {
+
+        //TODO: Add creation of the world.
         this.gameTimer = new TimerImpl(GameStateImpl.TIME);
         this.gameTimerThread = new TimerThread(this.gameTimer);
     }
@@ -90,6 +92,10 @@ public class GameStateImpl implements GameState {
     @Override
     public final void checkGameOver() {
         if (gameTimer.getTime().getTotal() == 0) {
+            this.gameOver = true;
+        } else if (this.getWorld().getBricks().size() == 0) {
+            this.gameOver = true;
+        } else if (this.getWorld().getBalls().size() == 0) {
             this.gameOver = true;
         }
     }
