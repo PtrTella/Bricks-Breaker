@@ -9,14 +9,22 @@ public abstract class GameObjectImpl implements GameObject {
 	private P2d pos;
 	private V2d vel;
 	private BoundingBox bbox;
+	private int lifes;
 
-    public GameObjectImpl(final Type type, final P2d pos, final V2d vel, final BoundingBox box){
-		this.type = type;
+    public GameObjectImpl(final P2d pos, final V2d vel, final int lifesToSet){
 		this.pos = pos;
 		this.vel = vel;
-		this.bbox = box;
+		this.lifes = lifesToSet;
 	}
 
+	public int getLifes() {
+		return this.lifes;
+	}
+
+	public void setLifes(final int lifesToSet) {
+		this.lifes = lifesToSet;
+	}
+	
     public Type getType() {
         return type;
     }

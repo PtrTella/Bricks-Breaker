@@ -5,19 +5,23 @@ import main.model.BoundingBox;
 
 public interface GameObject {
 
-    public Type getType();
+    int getLifes();
 
-    public void setType(final Type typeToSet);
+    void setLifes(final int lifesToSet);
 
-    public P2d getPosition();
+    Type getType();
 
-    public void setPosition(final P2d newPosition);
+    void setType(final Type typeToSet);
 
-    public V2d getSpeed();
+    P2d getPosition();
 
-    public void setSpeed(final V2d speed);
+    void setPosition(final P2d newPosition);
 
-    public BoundingBox getBoundingBox();
+    V2d getSpeed();
 
-    public void setBoundingBox(final BoundingBox bbox);
+    void setSpeed(final V2d speed);
+
+    BoundingBox getBoundingBox();
+
+    void setBoundingBox(final BoundingBox bbox);
 }
