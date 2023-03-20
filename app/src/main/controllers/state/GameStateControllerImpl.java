@@ -7,7 +7,7 @@ import main.controllers.state.event.WorldEventListenerImpl;
 public class GameStateControllerImpl extends ControllerImpl implements GameStateController {
 
     private WorldEventListener eventListener;
-
+    
     @Override
     public void processCommands() {
 
@@ -25,15 +25,14 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     }
 
     @Override
-    public void updateGame(int elapsed) {
+    public void updateGame(final int elapsed) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateGame'");
     }
 
     @Override
     public void quitGame() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'quitGame'");
+        this.getModel().setGameOver(true);
     }
 
     @Override
