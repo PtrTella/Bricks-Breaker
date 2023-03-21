@@ -5,13 +5,9 @@ import main.model.gameObjects.bounding.BoundingBox;
 
 public interface GameObject {
 
-    int getLifes();
+    TypeObj getType();
 
-    void setLifes(final int lifesToSet);
-
-    Type getType();
-
-    void setType(final Type typeToSet);
+    void setType(final TypeObj typeToSet);
 
     P2d getPosition();
 
