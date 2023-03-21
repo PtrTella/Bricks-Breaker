@@ -7,8 +7,6 @@ public interface GameObject {
 
     TypeObj getType();
 
-    void setType(final TypeObj typeToSet);
-
     P2d getPosition();
 
     void setPosition(final P2d newPosition);

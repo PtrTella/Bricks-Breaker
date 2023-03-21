@@ -20,10 +20,6 @@ public abstract class GameObjectImpl implements GameObject {
         return type;
     }
 
-	public void setType(final TypeObj typeToSet) {
-		this.type = typeToSet;
-	}
-
     public P2d getPosition() {
         return pos;
     }
