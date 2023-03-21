@@ -20,6 +20,7 @@ public class GameMapImpl implements GameMap {
 
     GameMapImpl(){}
 
+    //To optimize Do this loop with a different thread
     @Override
     public void LoadMap() {
         List<Integer> list;
