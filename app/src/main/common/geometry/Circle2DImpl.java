@@ -1,17 +1,14 @@
 package main.common.geometry;
 
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
 import main.common.P2d;
 
-public class Circle2DImpl implements Shape {
+public class Circle2DImpl implements Circle2D {
 
     private double radius;
     private P2d center;
@@ -56,6 +53,16 @@ public class Circle2DImpl implements Shape {
     }
 
     @Override
+    public boolean intersects(Rectangle2D r) {
+        return this.intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+    }
+
+    @Override
+    public boolean intersects(double x, double y, double w, double h) {
+        return this.getContainedVertices(x, y, w, h).size() != 0;
+    }
+    
+    @Override
     public Rectangle getBounds() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getBounds'");
@@ -78,15 +85,4 @@ public class Circle2DImpl implements Shape {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPathIterator'");
     }
-
-    @Override
-    public boolean intersects(Rectangle2D r) {
-        return this.intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
-    }
-
-    @Override
-    public boolean intersects(double x, double y, double w, double h) {
-        return this.getContainedVertices(x, y, w, h).size() != 0;
-    }
-    
 }

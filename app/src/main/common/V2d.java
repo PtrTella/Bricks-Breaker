@@ -13,8 +13,8 @@ public class V2d implements java.io.Serializable {
     }
 
     public V2d(P2d to, P2d from){
-        this.x=to.x-from.x;
-        this.y=to.y-from.y;
+        this.x = to.getX() - from.getX();
+        this.y = to.getY() - from.getY();
     }
 
     public V2d sum(V2d v){
