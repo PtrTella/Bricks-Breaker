@@ -1,12 +1,25 @@
 package main.model.gameObjects;
 
-public class Brick {
+import main.common.P2d;
+import main.common.V2d;
 
-    private int life;
-    private int powerUp;
-
-    public Brick() {
-        
-    }
+public class Brick extends GameObjectImpl{
     
+    private int life;
+    private TypePower powerUp;
+
+    public Brick(P2d pos, V2d vel, int lifeToSet, TypePower powerToSet) {
+        super(pos, vel);
+        this.life = lifeToSet;
+        this.powerUp = powerToSet;
+    }
+
+    public int decLife(){
+        return life-1;
+    }
+
+    public TypePower getPower(){
+        return this.powerUp;
+    }
+
 }
