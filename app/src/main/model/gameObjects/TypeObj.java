@@ -1,6 +1,6 @@
 package main.model.gameObjects;
 
-public enum Type {
+public enum TypeObj {
     BALL,
     BRICK,
     BAR,
