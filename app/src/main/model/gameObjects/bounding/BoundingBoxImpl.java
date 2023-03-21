@@ -1,6 +1,6 @@
 package main.model.gameObjects.bounding;
 
-import javafx.geometry.Rectangle2D;
+import main.common.geometry.Rectangle2D;
 
 public abstract class BoundingBoxImpl implements BoundingBox {
     
