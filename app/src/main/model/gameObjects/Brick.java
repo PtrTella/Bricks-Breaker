@@ -8,8 +8,8 @@ public class Brick extends GameObjectImpl{
     private int life;
     private TypePower powerUp;
 
-    public Brick(P2d pos, V2d vel, int lifeToSet, TypePower powerToSet) {
-        super(pos, vel, TypeObj.BRICK);
+    public Brick(P2d pos, int lifeToSet, TypePower powerToSet) {
+        super(pos, new V2d(0, 0), TypeObj.BRICK);
         this.life = lifeToSet;
         this.powerUp = powerToSet;
     }

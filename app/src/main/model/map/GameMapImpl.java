@@ -18,7 +18,7 @@ public class GameMapImpl implements GameMap {
                     "src" + File.separator + File.separator + "main" + File.separator + File.separator +
                     "resources" + File.separator + File.separator + "mapsFile";
 
-    GameMapImpl(){}
+    public GameMapImpl(){}
 
     //To optimize Do this loop with a different thread
     @Override
