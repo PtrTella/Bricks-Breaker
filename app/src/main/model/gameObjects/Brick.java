@@ -6,9 +6,9 @@ import main.common.V2d;
 public class Brick extends GameObjectImpl{
     
     private int life;
-    private TypePower powerUp;
+    private final TypePower powerUp;
 
-    public Brick(P2d pos, int lifeToSet, TypePower powerToSet) {
+    public Brick(final P2d pos, int lifeToSet, final TypePower powerToSet) {
         super(pos, new V2d(0, 0), TypeObj.BRICK);
         this.life = lifeToSet;
         this.powerUp = powerToSet;
@@ -18,7 +18,7 @@ public class Brick extends GameObjectImpl{
         return life-1;
     }
 
-    public TypePower getPower(){
+    public TypePower getPowerUp(){
         return this.powerUp;
     }
 
