@@ -39,7 +39,7 @@ public class Rectangle2DImpl implements Rectangle2D {
     }
 
     @Override
-    public boolean intersects(Rectangle2D rectToCheck) {
+    public boolean intersects(final Rectangle2D r) {
         return false;
     }
     
