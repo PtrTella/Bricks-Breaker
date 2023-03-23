@@ -1,10 +1,5 @@
 package main.common.geometry;
 
-import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import main.common.P2d;
 
@@ -23,17 +18,18 @@ public class Circle2DImpl implements Circle2D {
     }
 
     @Override
-    public boolean contains(Point2D p) {
+    public boolean contains(P2d p) {
         return this.contains(p.getX(), p.getY());   
     }
 
-    public ArrayList<Point2D> getContainedVertices(double x, double y, double w, double h) {
+    @Override
+    public ArrayList<P2d> getContainedVertices(double x, double y, double w, double h) {
 
-        ArrayList<Point2D> containedVertices = new ArrayList<Point2D>(4);
-        Point2D.Double [] corners = { new Point2D.Double(x, y), new Point2D.Double(x + w, y),
-            new Point2D.Double(x, y + h), new Point2D.Double(x + w, y + h) };
+        ArrayList<P2d> containedVertices = new ArrayList<P2d>(4);
+        P2d [] vertices = { new P2d(x, y), new P2d(x + w, y),
+            new P2d(x, y + h), new P2d(x + w, y + h) };
 
-        for (Point2D current : corners) {
+        for (P2d current : vertices) {
             if (this.contains(current)) {
                 containedVertices.add(current);
             }
@@ -49,40 +45,18 @@ public class Circle2DImpl implements Circle2D {
 
     @Override
     public boolean contains(Rectangle2D r) {
-        return this.contains(r.getX(), r.getY(), r.getWidth(), r.getHeight());
-    }
-
-    @Override
-    public boolean intersects(Rectangle2D r) {
-        return this.intersects(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+        P2d p = r.getPoint();
+        return this.contains(p.getX(), p.getY(), r.getWidth(), r.getHeight());
     }
 
     @Override
     public boolean intersects(double x, double y, double w, double h) {
         return this.getContainedVertices(x, y, w, h).size() != 0;
     }
-    
-    @Override
-    public Rectangle getBounds() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBounds'");
-    }
 
     @Override
-    public Rectangle2D getBounds2D() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getBounds2D'");
-    }
-
-    @Override
-    public PathIterator getPathIterator(AffineTransform at) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPathIterator'");
-    }
-
-    @Override
-    public PathIterator getPathIterator(AffineTransform at, double flatness) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPathIterator'");
+    public boolean intersects(Rectangle2D r) {
+        P2d p = r.getPoint();
+        return this.intersects(p.getX(), p.getY(), r.getWidth(), r.getHeight());
     }
 }

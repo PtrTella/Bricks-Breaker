@@ -1,22 +1,21 @@
 package main.common.geometry;
 
-import java.awt.Shape;
-import java.awt.geom.Point2D;
+import main.common.P2d;
 import java.util.ArrayList;
 
-public interface Circle2D extends Shape {
+public interface Circle2D {
 
-    @Override
-    public boolean contains(double x, double y);
+    boolean contains(final double x, final double y);
 
-    @Override
-    public boolean contains(Point2D p);
+    boolean contains(final P2d p);
 
-    public ArrayList<Point2D> getContainedVertices(double x, double y, double w, double h);
+    ArrayList<P2d> getContainedVertices(final double x, final double y, final double w, final double h);
 
-    @Override
-    public boolean contains(double x, double y, double w, double h);
+    boolean contains(final double x, final double y, final double w, final double h);
 
-    @Override
-    boolean intersects(double x, double y, double w, double h);
+    boolean contains(final Rectangle2D r);
+
+    boolean intersects(final double x, final double y, final double w, final double h);
+
+    boolean intersects(final Rectangle2D r);
 }
