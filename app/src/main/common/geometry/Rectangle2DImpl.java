@@ -4,18 +4,18 @@ import main.common.P2d;
 
 public class Rectangle2DImpl implements Rectangle2D {
 
-    private P2d topLeftCorner;
     private int width;
     private int height;
+    private P2d bottomLeft;
 
     @Override
     public void setPoint(P2d point) {
-        this.topLeftCorner = point;
+        this.bottomLeft = point;
     }
 
     @Override
     public P2d getPoint() {
-        return this.topLeftCorner;
+        return this.bottomLeft;
     }
 
     @Override
@@ -39,8 +39,41 @@ public class Rectangle2DImpl implements Rectangle2D {
     }
 
     @Override
-    public boolean intersects(final Rectangle2D r) {
-        return false;
+    public boolean contains(double x, double y) {
+        P2d rPoint = this.getPoint();
+
+        boolean xA = x >= rPoint.getX() && x <= rPoint.getX() + this.getWidth();
+        boolean yA = y >= rPoint.getY() && y <= rPoint.getY() + this.getHeight();
+
+        return xA && yA;
+    }
+
+    @Override
+    public boolean contains(final P2d p) {
+        return this.contains(p.getX(), p.getY());
+    }
+
+    @Override
+    public boolean contains(Rectangle2D p) {
+        P2d r = p.getPoint();
+        return this.contains(r.getX(), r.getY(), r.getX() + p.getWidth(), r.getY() + p.getHeight());
+    }
+
+    @Override
+    public boolean contains(double x, double y, double w, double h) {
+        return this.contains(x, y) && this.contains(x + w, y + h);
+    }
+
+    @Override
+    public boolean intersects(double x, double y, double w, double h) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'intersects'");
+    }
+
+    @Override
+    public boolean intersects(Rectangle2D r) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'intersects'");
     }
     
 }
