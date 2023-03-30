@@ -10,6 +10,15 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+/*  TODO HOW USE THIS CLASS
+    GameMap gmi = new GameMapImpl();
+    gmi.LoadMap();
+    Set<String> name = gmi.getNamesMap();
+    Iterator<String> iter = name.iterator();
+    System.out.println(gmi.getMap(iter.next()));
+    System.out.println(gmi.getMap("text1.txt"));
+*/
+
 public class GameMapImpl implements GameMap {
     
     private Map<String, List<Integer>> maps = new HashMap<String, List<Integer>>();
@@ -20,7 +29,7 @@ public class GameMapImpl implements GameMap {
 
     public GameMapImpl(){}
 
-    //To optimize Do this loop with a different thread
+    // TODO optimize Do this loop with a different thread
     @Override
     public void LoadMap() {
         List<Integer> list;
