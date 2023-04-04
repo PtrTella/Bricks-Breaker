@@ -2,14 +2,17 @@ package main.model.gameObjects;
 
 import main.common.P2d;
 import main.common.V2d;
+import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class PowerUp extends GameObjectImpl{
     
     private final TypePower powerUp;
+    private RectBoundingBox bbox;
 
-    public PowerUp(final P2d pos, final TypePower powerToSet) {
-        super(pos, new V2d(0, -5), TypeObj.POWERUP);     //TODO: adapt falling speed
+    public PowerUp(final P2d pos, final Double widthToSet, final Double heightToSet, final TypePower powerToSet) {
+        super(new V2d(0, -5), TypeObj.POWERUP);     //TODO: adapt falling speed
         this.powerUp = powerToSet;
+        this.bbox = new RectBoundingBox(pos,widthToSet,heightToSet);
     }
 
     public TypePower getPowerUp() {
@@ -17,8 +20,17 @@ public class PowerUp extends GameObjectImpl{
     }
 
     @Override
-    public void update(long dt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public P2d getPosition() {
+        return bbox.getP2d();
+    }
+    
+    @Override
+    public void setPosition(P2d newPosition) {
+        bbox.setP2d(newPosition);
+    }
+    
+    @Override
+    public RectBoundingBox getBBox() {
+        return this.bbox;
     }
 }
