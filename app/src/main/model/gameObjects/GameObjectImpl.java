@@ -1,17 +1,13 @@
 package main.model.gameObjects;
 
 import main.common.*;
-import main.model.gameObjects.bounding.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject {
 
     private TypeObj type;
-	private P2d pos;
 	private V2d vel;
-	private BoundingBox bbox;
 
-    public GameObjectImpl(final P2d pos, final V2d vel, final TypeObj typeToSet){
-		this.pos = pos;
+    public GameObjectImpl(final V2d vel, final TypeObj typeToSet) {
 		this.vel = vel;
 		this.type = typeToSet;
 	}
@@ -19,14 +15,6 @@ public abstract class GameObjectImpl implements GameObject {
     public TypeObj getType() {
         return type;
     }
-
-    public P2d getPosition() {
-        return pos;
-    }
-
-	public void setPosition(final P2d pos){
-		this.pos = pos;
-	}
 
     public V2d getSpeed() {
         return vel;
@@ -36,21 +24,4 @@ public abstract class GameObjectImpl implements GameObject {
 		this.vel = vel;
 	}
 
-    public BoundingBox getBoundingBox(){
-		return bbox;
-	}
-
-	public void setBoundingBox(final BoundingBox boxToSet) {
-		this.bbox = boxToSet;
-	}
-
-	public void flipVelOnY(){
-		this.vel = new V2d(vel.x, -vel.y);
-	}
-
-	public void flipVelOnX(){
-		this.vel = new V2d(-vel.x, vel.y);
-	}
-
-	public abstract void update(final long dt);
 }

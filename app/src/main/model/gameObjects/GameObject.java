@@ -15,7 +15,5 @@ public interface GameObject {
 
     void setSpeed(final V2d speed);
 
-    BoundingBox getBoundingBox();
-
-    void setBoundingBox(final BoundingBox bbox);
+    public BoundingBox getBBox();
 }
