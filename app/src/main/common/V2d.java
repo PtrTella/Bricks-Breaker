@@ -5,7 +5,7 @@ package main.common;
  */
 public class V2d implements java.io.Serializable {
 
-    public double x,y;
+    private Double x,y;
     
     public V2d(double x,double y){
         this.x=x;
@@ -15,6 +15,14 @@ public class V2d implements java.io.Serializable {
     public V2d(P2d to, P2d from){
         this.x = to.getX() - from.getX();
         this.y = to.getY() - from.getY();
+    }
+
+    public Double getX(){
+        return this.x;
+    }
+
+    public Double getY(){
+        return this.y;
     }
 
     public V2d sum(V2d v){
