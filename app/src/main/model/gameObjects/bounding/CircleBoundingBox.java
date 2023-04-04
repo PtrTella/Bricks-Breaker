@@ -7,6 +7,11 @@ public class CircleBoundingBox implements BoundingBox{
     private P2d pos;
     private Double radius;
 
+    public CircleBoundingBox(P2d pos, Double radius){
+        this.pos = pos;
+        this.radius = radius;
+    }
+
     @Override
     public P2d getP2d() {
         return this.pos;
