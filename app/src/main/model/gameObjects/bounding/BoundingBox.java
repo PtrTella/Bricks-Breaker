@@ -1,10 +1,11 @@
 package main.model.gameObjects.bounding;
 
-import main.common.geometry.Rectangle2D;
+import main.common.P2d;
 
 public interface BoundingBox {
+    
+    public P2d getP2d();
 
-    public Rectangle2D getCollider();
+	public void setP2d(final P2d pos);
 
-    public boolean isCollidingWith(final BoundingBox boxToCheck);
 }
