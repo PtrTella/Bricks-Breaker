@@ -22,7 +22,7 @@ public class P2d implements java.io.Serializable {
     }
 
     public P2d sum(V2d v){
-        return new P2d(x+v.x, y+v.y);
+        return new P2d(x+v.getX(), y+v.getY());
     }
 
     public V2d sub(P2d v){
