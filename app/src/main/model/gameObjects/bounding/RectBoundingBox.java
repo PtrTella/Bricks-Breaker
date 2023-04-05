@@ -2,12 +2,9 @@ package main.model.gameObjects.bounding;
 
 import main.common.P2d;
 
-/*togliere BoundingBox e BoundingBoxImpl */
-/*mettere la creazione del bounding box nel costruttore del Brick... */
-
 public class RectBoundingBox implements BoundingBox{
 
-    private P2d pos;     /*upper-left - bottom-right */
+    private P2d pos;
     private Double width, height;
 
     public RectBoundingBox(final P2d p, final Double width, final Double height){
@@ -60,9 +57,9 @@ public class RectBoundingBox implements BoundingBox{
 		return new P2d(p.getX() + w/2, p.getY() + h/2);
     }
 
-    // TODO implement method collision
     /* collision between circle and rectangle */
     public boolean isCollidingWith(CircleBoundingBox circ){
+        // TODO implement method collision
         return false;
     }
 
