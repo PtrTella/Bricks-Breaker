@@ -1,31 +1,20 @@
 package main.model;
 
-import java.util.List;
-
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
-import main.model.gameObjects.PowerUp;
 import main.controllers.state.event.WorldEventListener;
 
 public interface World {
 
     void setEventListener(final WorldEventListener listener);
 
-    void addBall(Ball ball);
-    void removeBall(Ball ball);
-    List<Ball> getBalls();
+    void addBall(Ball ball);    // in addition to the first one created in the constructor
+    Integer removeBall(Ball ball);  // returns the number of balls
 
-    void setBar(Bar barToSet);
-    Bar getBar();
+    Bar getBar();   // only get because set in constructor
 
-    void setBricks(List<Brick> brickToSet);
-    void removeBrick(Brick brick);
-    List<Brick> getBricks();
-
-    void setPowerUps(List<PowerUp> powerUpToSet);
-    void removePowerUp(PowerUp powerUp);
-    List<PowerUp> getPowerUps();
+    Integer removeBrick(Brick brick);   // returns the number of bricks and create a power Up in its place
 
     void updateGame(final int elapsed);
 

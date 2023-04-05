@@ -16,7 +16,7 @@ public class HittedBrickEvent implements WorldEvent {
         this.hittedBrick.decLife();
 
         if (this.hittedBrick.getLife() <= 0) {
-            currentGame.getWorld().getBricks().remove(this.hittedBrick);
+            currentGame.getWorld().removeBrick(this.hittedBrick);
         }
     }
     
