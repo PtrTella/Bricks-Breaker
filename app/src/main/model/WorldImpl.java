@@ -39,6 +39,11 @@ public class WorldImpl implements World {
     }
 
     @Override
+    public void removeBall(Ball ball) {
+        this.balls.remove(ball);
+    }
+
+    @Override
     public List<Ball> getBalls() {
         return this.balls;
     }
@@ -59,6 +64,11 @@ public class WorldImpl implements World {
     }
 
     @Override
+    public void removeBrick(Brick brick){
+        this.bricks.remove(brick);
+    }
+
+    @Override
     public List<Brick> getBricks() {
         return this.bricks;
     }
@@ -66,6 +76,10 @@ public class WorldImpl implements World {
     @Override
     public void setPowerUps(List<PowerUp> powerUpToSet) {
         this.powerUps.addAll(powerUpToSet);
+    }
+
+    public void removePowerUp(PowerUp powerUp){
+        this.powerUps.remove(powerUp);
     }
 
     @Override
