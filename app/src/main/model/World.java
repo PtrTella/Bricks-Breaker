@@ -10,11 +10,13 @@ public interface World {
     void setEventListener(final WorldEventListener listener);
 
     void addBall(Ball ball);    // in addition to the first one created in the constructor
-    Integer removeBall(Ball ball);  // returns the number of balls
+    void removeBall(Ball ball);
+    Integer getNumBalls(); // returns the number of balls
 
     Bar getBar();   // only get because set in constructor
 
-    Integer removeBrick(Brick brick);   // returns the number of bricks and create a power Up in its place
+    void removeBrick(Brick brick);   // create a power Up in its place
+    Integer getNumBricks(); // returns the number of bricks
 
     void updateGame(final int elapsed);
 

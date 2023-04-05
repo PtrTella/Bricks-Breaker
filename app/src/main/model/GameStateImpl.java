@@ -93,9 +93,9 @@ public class GameStateImpl implements GameState {
     public final void checkGameOver() {
         if (gameTimer.getTime().getTotal() == 0) {
             this.gameOver = true;
-        } else if (this.getWorld().getBricks().size() == 0) {
+        } else if (this.getWorld().getNumBricks() == 0) {
             this.gameOver = true;
-        } else if (this.getWorld().getBalls().size() == 0) {
+        } else if (this.getWorld().getNumBalls() == 0) {
             this.gameOver = true;
         }
     }
