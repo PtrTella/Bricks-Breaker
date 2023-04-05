@@ -93,8 +93,8 @@ public class WorldImpl implements World {
 
     @Override
     public void checkCollision() {
-        P2d ul = mainBBox.getULCorner(mainBBox.getP2d(), mainBBox.getWidth(), mainBBox.getHeight());
-		P2d br = mainBBox.getBRCorner(mainBBox.getP2d(), mainBBox.getWidth(), mainBBox.getHeight());
+        P2d ul = mainBBox.getULCorner();
+		P2d br = mainBBox.getBRCorner();
 
         // Power up collision with bar
         for(PowerUp p : this.activePowerUps){

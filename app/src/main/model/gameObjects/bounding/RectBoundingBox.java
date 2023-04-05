@@ -1,6 +1,7 @@
 package main.model.gameObjects.bounding;
 
 import main.common.P2d;
+import java.lang.Math;
 
 public class RectBoundingBox implements BoundingBox{
 
@@ -30,13 +31,21 @@ public class RectBoundingBox implements BoundingBox{
     public Double getHeight(){
         return this.height;
     }
+    
+    public P2d getULCorner(){
+        return new P2d(pos.getX() - width/2, pos.getY() - height/2);
+    }
+    
+    public P2d getBRCorner(){
+        return new P2d(pos.getX() + width/2, pos.getY() + height/2);
+    }
 
     /* collison between two rectangles */
     public boolean isCollidingWith(RectBoundingBox rect) {
-        P2d ul = getULCorner(pos, width, height);
-        P2d br = getBRCorner(pos, width, height);
-        P2d pul = getULCorner(rect.pos, rect.width, rect.height);
-        P2d pbr = getBRCorner(rect.pos, rect.width, rect.height);
+        P2d ul = getULCorner();
+        P2d br = getBRCorner();
+        P2d pul = new P2d(rect.pos.getX() - rect.width/2, rect.pos.getY() - rect.height/2);
+        P2d pbr = new P2d(rect.pos.getX() + rect.width/2, rect.pos.getY() + rect.height/2);
         
         return (ul.getX() <= pul.getX() &&
                 ul.getY() <= pul.getY() &&
@@ -49,18 +58,24 @@ public class RectBoundingBox implements BoundingBox{
                 br.getY() >= pbr.getY());
     }
 
-    public P2d getULCorner(P2d p, Double w, Double h){
-		return new P2d(p.getX() - w/2, p.getY() - h/2);
-	}
-	
-	public P2d getBRCorner(P2d p, Double w, Double h){
-		return new P2d(p.getX() + w/2, p.getY() + h/2);
-    }
-
     /* collision between circle and rectangle */
     public boolean isCollidingWith(CircleBoundingBox circ){
-        // TODO implement method collision
-        return false;
+        Double circDistX = Math.abs(circ.getP2d().getX() - pos.getX());
+        Double circDistY = Math.abs(circ.getP2d().getY() - pos.getY());
+ 
+        if(circDistX > (width/2 + circ.getRad()) || circDistY > (height/2 + circ.getRad())){
+            return false;
+        }
+
+        if(circDistX <= (width/2) || circDistY <= (height/2)){
+            return true;
+        }
+
+        Double dx = circDistX - width/2;
+        Double dy = circDistY - height/2;
+        
+        return ((dx*dx + dy*dy) <= (circ.getRad() * circ.getRad()));
+
     }
 
 }
