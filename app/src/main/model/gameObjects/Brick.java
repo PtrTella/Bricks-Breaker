@@ -5,21 +5,15 @@ import main.common.V2d;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class Brick extends GameObjectImpl{
-    
-    private int life;
+
     private final TypePower powerUp;
 	private RectBoundingBox bbox;
 
-    public Brick(final P2d pos, final Double widthToSet, final Double heightToSet, final Integer lifeToSet, final TypePower powerToSet) {
-        super(new V2d(0, 0), TypeObj.BRICK);
-        this.life = lifeToSet;
+    public Brick(final int lifes, final P2d pos, final Double widthToSet, final Double heightToSet, final TypePower powerToSet) {
+        super(lifes, new V2d(0, 0), TypeObj.BRICK);
         this.powerUp = powerToSet;
         this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
 
-    }
-
-    public int decLife(){
-        return life-1;
     }
 
     public TypePower getPowerUp(){
