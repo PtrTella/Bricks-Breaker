@@ -7,8 +7,8 @@ public class Bar extends GameObjectImpl{
 
     private RectBoundingBox bbox;
 
-    public Bar(P2d pos, final Double widthToSet, final Double heightToSet, V2d vel) {
-        super(vel, TypeObj.BAR);  // TODO change vel of bar
+    public Bar(P2d pos, final Double widthToSet, final Double heightToSet, V2d vel, final Integer lifeToset) {
+        super(lifeToset, vel, TypeObj.BAR);  // TODO change vel of bar
         this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
     }
 

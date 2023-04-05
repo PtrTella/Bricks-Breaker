@@ -8,7 +8,7 @@ public class Ball extends GameObjectImpl {
 	private CircleBoundingBox bbox;
 
 	public Ball(final P2d center, final Double radius, final V2d vel){
-		super(vel, TypeObj.BALL);
+		super(1,vel, TypeObj.BALL);
 		this.bbox = new CircleBoundingBox(center, radius);
 	}
 

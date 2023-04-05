@@ -4,11 +4,11 @@ import main.common.*;
 
 public abstract class GameObjectImpl implements GameObject {
 
-    private int lifes;
+    private Integer lifes;
     private TypeObj type;
 	private V2d vel;
 
-    public GameObjectImpl(final int lifesToSet, final V2d vel, final TypeObj typeToSet) {
+    public GameObjectImpl(final Integer lifesToSet, final V2d vel, final TypeObj typeToSet) {
 		this.vel = vel;
 		this.type = typeToSet;
         this.lifes = lifesToSet;
