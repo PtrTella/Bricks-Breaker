@@ -5,6 +5,12 @@ import main.model.gameObjects.bounding.BoundingBox;
 
 public interface GameObject {
 
+    void decLife();
+
+    void incLife();
+
+    int getLife();
+
     TypeObj getType();
 
     P2d getPosition();
@@ -15,5 +21,5 @@ public interface GameObject {
 
     void setSpeed(final V2d speed);
 
-    public BoundingBox getBBox();
+    BoundingBox getBBox();
 }
