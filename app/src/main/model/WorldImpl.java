@@ -93,13 +93,12 @@ public class WorldImpl implements World {
 
     @Override
     public void checkCollision() {
-        RectBoundingBox barBox = this.bar.getBBox();
         P2d ul = mainBBox.getULCorner(mainBBox.getP2d(), mainBBox.getWidth(), mainBBox.getHeight());
 		P2d br = mainBBox.getBRCorner(mainBBox.getP2d(), mainBBox.getWidth(), mainBBox.getHeight());
 
         // Power up collision with bar
         for(PowerUp p : this.activePowerUps){
-            if(p.getBBox().isCollidingWith(barBox.getP2d(), barBox.getWidth(), barBox.getHeight())){
+            if(p.getBBox().isCollidingWith(bar.getBBox())){
                 this.evListener.notifyEvent(new HitPowerUp(p));
             }
         }
@@ -113,7 +112,7 @@ public class WorldImpl implements World {
             
             // brick collision with balls
             for(Brick b : this.bricks) {
-                if (b.getBBox().isCollidingWith(pos, r)){
+                if (b.getBBox().isCollidingWith(ball.getBBox())){
                     this.evListener.notifyEvent(new HittedBrickEvent(b));
                 }
             }

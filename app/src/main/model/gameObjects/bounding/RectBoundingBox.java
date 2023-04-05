@@ -35,11 +35,11 @@ public class RectBoundingBox implements BoundingBox{
     }
 
     /* collison between two rectangles */
-    public boolean isCollidingWith(P2d p, Double w, Double h) {
+    public boolean isCollidingWith(RectBoundingBox rect) {
         P2d ul = getULCorner(pos, width, height);
         P2d br = getBRCorner(pos, width, height);
-        P2d pul = getULCorner(p, w, h);
-        P2d pbr = getBRCorner(pul, w, h);
+        P2d pul = getULCorner(rect.pos, rect.width, rect.height);
+        P2d pbr = getBRCorner(rect.pos, rect.width, rect.height);
         
         return (ul.getX() <= pul.getX() &&
                 ul.getY() <= pul.getY() &&
@@ -62,7 +62,7 @@ public class RectBoundingBox implements BoundingBox{
 
     // TODO implement method collision
     /* collision between circle and rectangle */
-    public boolean isCollidingWith(P2d center, Double radius){
+    public boolean isCollidingWith(CircleBoundingBox circ){
         return false;
     }
 
