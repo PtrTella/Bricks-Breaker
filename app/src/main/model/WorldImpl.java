@@ -1,6 +1,8 @@
 package main.model;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import main.controllers.state.event.HittedBrickEvent;
 import main.common.P2d;
@@ -23,12 +25,24 @@ public class WorldImpl implements World {
 	private WorldEventListener evListener;
 
     public WorldImpl(final RectBoundingBox bbox, final Ball ballToSet, 
-                    final Bar barToSet, final List<Brick> bricks, final List<PowerUp> powerUps) {
+                    final Bar barToSet, final List<Brick> bricks, final List<TypePower> powerUps) {
         this.balls.add(ballToSet);
         this.bar = barToSet;
         this.bricks.addAll(bricks);
-        // TODO Add power up to brick randomly
+        randomPowerUpAssignament(bricks, powerUps);
         this.mainBBox = bbox;
+    }
+
+    // adding TypePower randomly to bricks
+    private void randomPowerUpAssignament(List<Brick> b, List<TypePower> p){
+        Integer diff = b.size() - p.size();
+        Random random = new Random();
+        if(diff > 0){
+            p.addAll(Collections.nCopies(diff, TypePower.NULL));
+        }
+        for(Brick brick : b){
+            brick.setPowerUp(p.remove(random.nextInt(p.size())));
+        }
     }
 
     @Override
