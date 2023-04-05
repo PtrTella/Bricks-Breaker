@@ -1,5 +1,6 @@
 package main.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import main.controllers.state.event.HittedBrickEvent;
@@ -13,15 +14,63 @@ import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class WorldImpl implements World {
 
+    private List<Ball> balls;
     private Bar bar;
-    private Ball ball;
     private List<Brick> bricks;
     private List<PowerUp> powerUps;
-    private WorldEventListener listener;
+    private RectBoundingBox mainBBox;
+	private WorldEventListener evListener;
+
+    public WorldImpl(final RectBoundingBox bbox) {
+        this.balls = new ArrayList<Ball>();
+        this.bricks = new ArrayList<Brick>();
+        this.powerUps = new ArrayList<PowerUp>();
+        this.mainBBox = bbox;
+    }
 
     @Override
     public void setEventListener(final WorldEventListener listener) {
-        this.listener = listener;
+        this.evListener = listener;
+    }
+
+    @Override
+    public void addBall(Ball ball) {
+        this.balls.add(ball);
+    }
+
+    @Override
+    public List<Ball> getBalls() {
+        return this.balls;
+    }
+
+    @Override
+    public void setBar(Bar barToSet) {
+        this.bar = barToSet;
+    }
+
+    @Override
+    public Bar getBar() {
+        return this.bar;
+    }
+
+    @Override
+    public void setBricks(List<Brick> brickToSet) {
+        this.bricks.addAll(brickToSet);
+    }
+
+    @Override
+    public List<Brick> getBricks() {
+        return this.bricks;
+    }
+
+    @Override
+    public void setPowerUps(List<PowerUp> powerUpToSet) {
+        this.powerUps.addAll(powerUpToSet);
+    }
+
+    @Override
+    public List<PowerUp> getPowerUps() {
+        return this.powerUps;
     }
 
     @Override
@@ -33,27 +82,23 @@ public class WorldImpl implements World {
     public void checkCollision() {
         RectBoundingBox barBox = this.bar.getBBox();
 
-        for(PowerUp p : this.powerUps) {
-            if(p.getBBox().isCollidingWith(barBox.getP2d(), barBox.getWidth(), barBox.getHeight())) {
-                this.listener.notifyEvent(new HitPowerUp(p));
+        for(PowerUp p : this.powerUps){
+            if(p.getBBox().isCollidingWith(barBox.getP2d(), barBox.getWidth(), barBox.getHeight())){
+                this.evListener.notifyEvent(new HitPowerUp(p));
             }
         }
 
-        for(Brick b : this.bricks) {
-            if (b.getBBox().isCollidingWith(this.ball.getPosition(), this.ball.getBBox().getRadius())) {
-                this.listener.notifyEvent(new HittedBrickEvent(b));
+        for(Ball ball : this.balls){
+            for(Brick b : this.bricks) {
+                if (b.getBBox().isCollidingWith(ball.getPosition(), ball.getBBox().getRadius())){
+                    this.evListener.notifyEvent(new HittedBrickEvent(b));
+                }
             }
         }
+        
     }
 
     @Override
-    public void checkBoundary() {
-
-    }
-
-    @Override
-    public List<Brick> getBricks() {
-        return this.getBricks();
-    }
+    public void checkBoundary() {}
     
 }

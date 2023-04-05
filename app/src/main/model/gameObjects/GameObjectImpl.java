@@ -25,6 +25,7 @@ public abstract class GameObjectImpl implements GameObject {
     public void incLife() {
         this.lifes++;
     }
+    
     public TypeObj getType() {
         return type;
     }
