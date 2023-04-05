@@ -1,15 +1,16 @@
 package main.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import main.controllers.state.event.HittedBrickEvent;
+import main.common.P2d;
 import main.controllers.state.event.HitPowerUp;
 import main.controllers.state.event.WorldEventListener;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
 import main.model.gameObjects.PowerUp;
+import main.model.gameObjects.TypePower;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class WorldImpl implements World {
@@ -17,14 +18,16 @@ public class WorldImpl implements World {
     private List<Ball> balls;
     private Bar bar;
     private List<Brick> bricks;
-    private List<PowerUp> powerUps;
+    private List<PowerUp> activePowerUps;
     private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 
-    public WorldImpl(final RectBoundingBox bbox) {
-        this.balls = new ArrayList<Ball>();
-        this.bricks = new ArrayList<Brick>();
-        this.powerUps = new ArrayList<PowerUp>();
+    public WorldImpl(final RectBoundingBox bbox, final Ball ballToSet, 
+                    final Bar barToSet, final List<Brick> bricks, final List<PowerUp> powerUps) {
+        this.balls.add(ballToSet);
+        this.bar = barToSet;
+        this.bricks.addAll(bricks);
+        // TODO Add power up to brick randomly
         this.mainBBox = bbox;
     }
 
@@ -39,18 +42,9 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void removeBall(Ball ball) {
+    public Integer removeBall(Ball ball) {
         this.balls.remove(ball);
-    }
-
-    @Override
-    public List<Ball> getBalls() {
-        return this.balls;
-    }
-
-    @Override
-    public void setBar(Bar barToSet) {
-        this.bar = barToSet;
+        return this.balls.size();
     }
 
     @Override
@@ -59,32 +53,13 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void setBricks(List<Brick> brickToSet) {
-        this.bricks.addAll(brickToSet);
-    }
-
-    @Override
-    public void removeBrick(Brick brick){
+    public Integer removeBrick(Brick brick){
         this.bricks.remove(brick);
-    }
-
-    @Override
-    public List<Brick> getBricks() {
-        return this.bricks;
-    }
-
-    @Override
-    public void setPowerUps(List<PowerUp> powerUpToSet) {
-        this.powerUps.addAll(powerUpToSet);
-    }
-
-    public void removePowerUp(PowerUp powerUp){
-        this.powerUps.remove(powerUp);
-    }
-
-    @Override
-    public List<PowerUp> getPowerUps() {
-        return this.powerUps;
+        if(brick.getPowerUp() != TypePower.NULL){
+            // TODO choose width and height of power up
+            this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), null, null, brick.getPowerUp()));
+        }
+        return this.bricks.size();
     }
 
     @Override
@@ -95,18 +70,39 @@ public class WorldImpl implements World {
     @Override
     public void checkCollision() {
         RectBoundingBox barBox = this.bar.getBBox();
+        P2d ul = mainBBox.getULCorner(mainBBox.getP2d(), mainBBox.getWidth(), mainBBox.getHeight());
+		P2d br = mainBBox.getBRCorner(mainBBox.getP2d(), mainBBox.getWidth(), mainBBox.getHeight());
 
-        for(PowerUp p : this.powerUps){
+        // Power up collision with bar
+        for(PowerUp p : this.activePowerUps){
             if(p.getBBox().isCollidingWith(barBox.getP2d(), barBox.getWidth(), barBox.getHeight())){
                 this.evListener.notifyEvent(new HitPowerUp(p));
             }
         }
 
         for(Ball ball : this.balls){
+            
+            P2d pos = ball.getPosition();
+            Double r = ball.getRadius();
+
+            // TODO one or the other
+            
+            // brick collision with balls
             for(Brick b : this.bricks) {
-                if (b.getBBox().isCollidingWith(ball.getPosition(), ball.getBBox().getRadius())){
+                if (b.getBBox().isCollidingWith(pos, r)){
                     this.evListener.notifyEvent(new HittedBrickEvent(b));
                 }
+            }
+
+            // ball collision with border
+            if(pos.getY() + r > ul.getY()){
+                // collion with TOP
+            } else if(pos.getY() - r < br.getY()){
+                // collion with BOTTOM
+            } else if(pos.getX() + r > br.getX()){
+                // collion with RIGHT
+            } else if(pos.getX() -r < ul.getX()){
+                // collision with LEFT
             }
         }
         
