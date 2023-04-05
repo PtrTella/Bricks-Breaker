@@ -6,14 +6,17 @@ import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class Brick extends GameObjectImpl{
 
-    private final TypePower powerUp;
+    private TypePower powerUp;
 	private RectBoundingBox bbox;
 
-    public Brick(final int lifes, final P2d pos, final Double widthToSet, final Double heightToSet, final TypePower powerToSet) {
+    public Brick(final int lifes, final P2d pos, final Double widthToSet, final Double heightToSet) {
         super(lifes, new V2d(0, 0), TypeObj.BRICK);
-        this.powerUp = powerToSet;
+        this.powerUp = TypePower.NULL;
         this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
+    }
 
+    public void setPowerUp(TypePower powerUpToSet) {
+        this.powerUp = powerUpToSet;
     }
 
     public TypePower getPowerUp(){

@@ -52,8 +52,8 @@ public class RectBoundingBox implements BoundingBox{
                 br.getY() >= pbr.getY());
     }
 
-    public P2d getULCorner(P2d p, Double width, Double height){
-		return new P2d(p.getX() - width/2, p.getY() - height/2);
+    public P2d getULCorner(P2d p, Double w, Double h){
+		return new P2d(p.getX() - w/2, p.getY() - h/2);
 	}
 	
 	public P2d getBRCorner(P2d p, Double w, Double h){
