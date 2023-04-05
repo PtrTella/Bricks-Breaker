@@ -56,8 +56,13 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public Integer removeBall(Ball ball) {
+    public void removeBall(Ball ball) {
         this.balls.remove(ball);
+        //return this.balls.size();
+    }
+
+    @Override
+    public Integer getNumBalls(){
         return this.balls.size();
     }
 
@@ -67,12 +72,17 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public Integer removeBrick(Brick brick){
+    public void removeBrick(Brick brick){
         this.bricks.remove(brick);
         if(brick.getPowerUp() != TypePower.NULL){
             // TODO choose width and height of power up
             this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), null, null, brick.getPowerUp()));
         }
+        //return this.bricks.size();
+    }
+
+    @Override
+    public Integer getNumBricks(){
         return this.bricks.size();
     }
 
