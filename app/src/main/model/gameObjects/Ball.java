@@ -21,6 +21,10 @@ public class Ball extends GameObjectImpl {
     public void setPosition(P2d newPosition) {
         bbox.setP2d(newPosition);
     }
+
+    public Double getRadius() {
+        return bbox.getRad();
+    }
     
     @Override
     public CircleBoundingBox getBBox() {
