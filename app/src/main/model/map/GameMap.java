@@ -8,10 +8,14 @@ public interface GameMap {
     List<String> getNamesMap();
     
     /* 
-     *  Return a map, if new load the new map, else return the same in memory.
+     *  Return a map, if new: load the new map, else return the same in memory.
      *  If name map is absent catch exception and return an empty list.
+     *  If size map is not correct return an empty list
      */
     List<Integer> LoadMap(String name);
+
+    Integer getLineMap();
+    Integer getColumnMap();
 
     //boolean addMap();
 

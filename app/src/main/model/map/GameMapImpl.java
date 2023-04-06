@@ -9,10 +9,15 @@ import java.util.Scanner;
 
 public class GameMapImpl implements GameMap {
     
-    private List<Integer> currentMap;
-    private String mapName;
+    // TODO change lineBrick and brickInLine when implementing views
+    private final Integer lineMap = 4;
+    private final Integer columnMap = 6;
+
     private final String sep;
     private final String path;
+    
+    private List<Integer> currentMap;
+    private String mapName;
 
     public GameMapImpl(){
         this.currentMap = new ArrayList<Integer>();
@@ -40,9 +45,21 @@ public class GameMapImpl implements GameMap {
                 this.mapName = "";
                 e.printStackTrace();
             }
+            if( (currentMap.size() % lineMap) != 0 || (currentMap.size() % columnMap) != 0 ){
+                return List.of();
+            }
         }
-        // TODO add check of map dimensions
         return this.currentMap;
+    }
+
+    @Override
+    public Integer getLineMap() {
+        return this.lineMap;
+    }
+
+    @Override
+    public Integer getColumnMap() {
+        return this.columnMap;
     }
 
 }
