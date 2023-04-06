@@ -127,7 +127,7 @@ public class WorldImpl implements World {
             }else{
                 for(Brick b : this.bricks) {                                                //BRICK
                     if (b.getBBox().isCollidingWith(ball.getBBox())){
-                        this.evListener.notifyEvent(new HitBrick(b));
+                        this.evListener.notifyEvent(new HitBrick(b,ball));
                     }
                 }
             }
