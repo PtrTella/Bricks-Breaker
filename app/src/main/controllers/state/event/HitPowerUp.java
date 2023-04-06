@@ -3,7 +3,7 @@ package main.controllers.state.event;
 import main.model.GameState;
 import main.model.gameObjects.PowerUp;
 
-public class HitPowerUp implements WorldEvent{
+public class HitPowerUp implements HitObjects{
 
     private PowerUp picked;
 

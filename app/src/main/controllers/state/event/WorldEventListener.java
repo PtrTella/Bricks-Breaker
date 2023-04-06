@@ -6,9 +6,9 @@ import main.model.GameState;
 
 public interface WorldEventListener {
 
-    void notifyEvent(WorldEvent event);
+    void notifyEvent(HitObjects event);
 
-    List<WorldEvent> getWorldEventsList();
+    List<HitObjects> getWorldEventsList();
 
     void processAll();
 
