@@ -31,7 +31,6 @@ public class Ball extends GameObjectImpl {
         return this.bbox;
     }
     
-    // TODO two method only for ball
 	public void flipVelOnY(){
 		this.setSpeed(new V2d(this.getSpeed().getX(), -this.getSpeed().getY()));
 	}

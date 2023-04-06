@@ -19,6 +19,8 @@ import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class WorldImpl implements World {
 
+    public enum SideCollision { TOP, BOTTOM, LEFT, RIGHT };
+
     private List<Ball> balls;
     private Bar bar;
     private List<Brick> bricks;
@@ -113,23 +115,17 @@ public class WorldImpl implements World {
             Double r = ball.getRadius();
             
             if(pos.getY() + r > ul.getY()){
-                // collion with TOP
-                this.evListener.notifyEvent(new HitBorder());
+                this.evListener.notifyEvent(new HitBorder(ball, SideCollision.TOP, ul.getY()));      //TOP-BORDER
             } else if(pos.getY() - r < br.getY()){
-                // collion with BOTTOM -> remove ball
-                this.evListener.notifyEvent(new HitBorder());
-            }else if(pos.getX() + r > br.getX()){
-                // collion with RIGHT
-                this.evListener.notifyEvent(new HitBorder());
+                this.evListener.notifyEvent(new HitBorder(ball, SideCollision.BOTTOM, br.getY()));   //BOTTOM-BORDER
             } else if(pos.getX() -r < ul.getX()){
-                // collision with LEFT
-                this.evListener.notifyEvent(new HitBorder());
+                this.evListener.notifyEvent(new HitBorder(ball, SideCollision.LEFT, ul.getX()));     //LEFT-BORDER
+            }else if(pos.getX() + r > br.getX()){
+                this.evListener.notifyEvent(new HitBorder(ball, SideCollision.RIGHT, br.getX()));    //RIGHT-BORDER
             }else if(bar.getBBox().isCollidingWith(ball.getBBox())){
-                // collision with bar
-                this.evListener.notifyEvent(new HitBar());
+                this.evListener.notifyEvent(new HitBar());                                  //BAR
             }else{
-                // collision with brick
-                for(Brick b : this.bricks) {
+                for(Brick b : this.bricks) {                                                //BRICK
                     if (b.getBBox().isCollidingWith(ball.getBBox())){
                         this.evListener.notifyEvent(new HitBrick(b));
                     }
