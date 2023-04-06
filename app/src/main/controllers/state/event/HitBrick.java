@@ -3,11 +3,11 @@ package main.controllers.state.event;
 import main.model.GameState;
 import main.model.gameObjects.Brick;
 
-public class HittedBrickEvent implements WorldEvent {
+public class HitBrick implements HitObjects {
 
     private Brick hittedBrick;
 
-    public HittedBrickEvent(Brick hitted) {
+    public HitBrick(Brick hitted) {
         this.hittedBrick = hitted;
     }
 
