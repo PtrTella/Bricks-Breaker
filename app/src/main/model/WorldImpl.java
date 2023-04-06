@@ -118,12 +118,12 @@ public class WorldImpl implements World {
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.TOP, ul.getY()));      //TOP-BORDER
             } else if(pos.getY() - r < br.getY()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.BOTTOM, br.getY()));   //BOTTOM-BORDER
-            } else if(pos.getX() -r < ul.getX()){
+            } else if(pos.getX() - r < ul.getX()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.LEFT, ul.getX()));     //LEFT-BORDER
             }else if(pos.getX() + r > br.getX()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.RIGHT, br.getX()));    //RIGHT-BORDER
             }else if(bar.getBBox().isCollidingWith(ball.getBBox())){
-                this.evListener.notifyEvent(new HitBar());                                  //BAR
+                this.evListener.notifyEvent(new HitBar(ball));                                  //BAR
             }else{
                 for(Brick b : this.bricks) {                                                //BRICK
                     if (b.getBBox().isCollidingWith(ball.getBBox())){
@@ -139,7 +139,10 @@ public class WorldImpl implements World {
      */
     private void checkCollisionWithPowerUp(){
         for(PowerUp p : this.activePowerUps){
-            if(p.getBBox().isCollidingWith(bar.getBBox())){
+            
+            if(p.getPosition().getY() - p.getBBox().getHeight()/2 < mainBBox.getBRCorner().getY()){
+                this.activePowerUps.remove(p);
+            }else if(p.getBBox().isCollidingWith(bar.getBBox())){
                 this.evListener.notifyEvent(new HitPowerUp(p));
             }
         }
