@@ -21,6 +21,4 @@ public interface World {
     void updateGame(final int elapsed);
 
     void checkCollision();
-
-    void checkBoundary();
 }
