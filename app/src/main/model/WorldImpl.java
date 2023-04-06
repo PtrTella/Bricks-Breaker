@@ -116,7 +116,7 @@ public class WorldImpl implements World {
                 // collion with TOP
                 this.evListener.notifyEvent(new HitBorder());
             } else if(pos.getY() - r < br.getY()){
-                // collion with BOTTOM
+                // collion with BOTTOM -> remove ball
                 this.evListener.notifyEvent(new HitBorder());
             }else if(pos.getX() + r > br.getX()){
                 // collion with RIGHT
