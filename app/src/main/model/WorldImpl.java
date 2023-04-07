@@ -144,6 +144,7 @@ public class WorldImpl implements World {
                 this.activePowerUps.remove(p);
             }else if(p.getBBox().isCollidingWith(bar.getBBox())){
                 this.evListener.notifyEvent(new HitPowerUp(p));
+                this.activePowerUps.remove(p);
             }
         }
     }

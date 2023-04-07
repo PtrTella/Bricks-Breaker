@@ -17,7 +17,7 @@ public class HitPowerUp implements HitObjects{
 
     @Override
     public void process(final GameState currentGame) {
-        //TODO: applyPowerUp() method in GameState(?)
+        //TODO: applyPowerUp() method in GameState(?) -> need a timer check
     }
     
 }

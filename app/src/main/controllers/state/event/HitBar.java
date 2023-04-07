@@ -13,7 +13,7 @@ public class HitBar implements HitObjects {
 
     @Override
     public void process(GameState currentGame) {
-        // TODO invert vel of ball with corner radius
+        // TODO invert vel y of ball and set a new vel x in proportion to the distance between the two centres
     }
     
 }
