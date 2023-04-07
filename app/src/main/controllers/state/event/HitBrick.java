@@ -22,7 +22,12 @@ public class HitBrick implements HitObjects {
             currentGame.getWorld().removeBrick(this.hittedBrick);
         }
 
-        // TODO invert vel of ball
+        if( hittedBrick.getBBox().getULCorner().getY() > ball.getPosition().getY() && 
+            hittedBrick.getBBox().getBRCorner().getY() < ball.getPosition().getY() ){
+            ball.flipVelOnX();
+        }else{
+            ball.flipVelOnY();
+        }
     }
     
 }
