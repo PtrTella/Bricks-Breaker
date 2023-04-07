@@ -4,57 +4,62 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
-
-/*  TODO HOW USE THIS CLASS
-    GameMap gmi = new GameMapImpl();
-    gmi.LoadMap();
-    Set<String> name = gmi.getNamesMap();
-    Iterator<String> iter = name.iterator();
-    System.out.println(gmi.getMap(iter.next()));
-    System.out.println(gmi.getMap("text1.txt"));
-*/
 
 public class GameMapImpl implements GameMap {
     
-    private Map<String, List<Integer>> maps = new HashMap<String, List<Integer>>();
+    // TODO change lineBrick and brickInLine when implementing views
+    private final Integer lineMap = 4;
+    private final Integer columnMap = 6;
 
-    final String path ="." + File.separator + File.separator + "app" + File.separator + File.separator +
-                    "src" + File.separator + File.separator + "main" + File.separator + File.separator +
-                    "resources" + File.separator + File.separator + "mapsFile";
+    private final String sep;
+    private final String path;
+    
+    private List<Integer> currentMap;
+    private String mapName;
 
-    public GameMapImpl(){}
+    public GameMapImpl(){
+        this.currentMap = new ArrayList<Integer>();
+        this.mapName = "";
+        this.sep = File.separator + File.separator;
+        this.path ="." + sep + "app" + sep + "src" + sep + "main" + sep + "resources" + sep + "mapsFile";
+    }
 
-    // TODO optimize Do this loop with a different thread
     @Override
-    public void LoadMap() {
-        List<Integer> list;
-        for(String f : Arrays.asList(new File(path).list())){
-            list = new ArrayList<Integer>();
-            try (Scanner sc = new Scanner(new File(path + File.separator + File.separator + f))) {
+    public List<String> getNamesMap() {
+        return Arrays.asList(new File(path).list());
+    }
+
+    @Override
+    public List<Integer> LoadMap(String fileName) {
+        if(!this.mapName.equals(fileName)){
+            currentMap.clear();
+            try (Scanner sc = new Scanner(new File(path + sep + fileName))) {
                 while(sc.hasNextInt()){
-                    list.add(sc.nextInt());
+                    currentMap.add(sc.nextInt());
                 }
-                maps.put(f,list);
                 sc.close();
+                this.mapName = fileName;
             } catch (FileNotFoundException e) {
+                this.mapName = "";
                 e.printStackTrace();
             }
+            if( (currentMap.size() % lineMap) != 0 || (currentMap.size() % columnMap) != 0 ){
+                return List.of();
+            }
         }
+        return this.currentMap;
     }
 
     @Override
-    public Set<String> getNamesMap() {
-        return maps.keySet();
+    public Integer getLineMap() {
+        return this.lineMap;
     }
 
     @Override
-    public List<Integer> getMap(String name) {
-        return maps.get(name);
+    public Integer getColumnMap() {
+        return this.columnMap;
     }
 
 }

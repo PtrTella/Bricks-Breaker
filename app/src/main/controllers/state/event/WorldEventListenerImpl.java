@@ -7,19 +7,19 @@ import java.util.List;
 public class WorldEventListenerImpl implements WorldEventListener {
 
     private GameState state;
-    private List<WorldEvent> worldEvents;
+    private List<HitObjects> worldEvents;
 
     public WorldEventListenerImpl() {
-        this.worldEvents = new LinkedList<WorldEvent>();
+        this.worldEvents = new LinkedList<HitObjects>();
     }
 
     @Override
-    public void notifyEvent(WorldEvent event) {
+    public void notifyEvent(HitObjects event) {
         this.worldEvents.add(event);
     }
 
     @Override
-    public List<WorldEvent> getWorldEventsList() {
+    public List<HitObjects> getWorldEventsList() {
         return this.worldEvents;
     }
 

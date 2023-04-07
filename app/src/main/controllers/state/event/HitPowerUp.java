@@ -3,7 +3,7 @@ package main.controllers.state.event;
 import main.model.GameState;
 import main.model.gameObjects.PowerUp;
 
-public class HitPowerUp implements WorldEvent{
+public class HitPowerUp implements HitObjects{
 
     private PowerUp picked;
 
@@ -17,7 +17,7 @@ public class HitPowerUp implements WorldEvent{
 
     @Override
     public void process(final GameState currentGame) {
-        //TODO: applyPowerUp() method in GameState(?)
+        //TODO: applyPowerUp() method in GameState(?) -> need a timer check
     }
     
 }

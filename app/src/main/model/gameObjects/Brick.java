@@ -9,8 +9,8 @@ public class Brick extends GameObjectImpl{
     private TypePower powerUp;
 	private RectBoundingBox bbox;
 
-    public Brick(final int lifes, final P2d pos, final Double widthToSet, final Double heightToSet) {
-        super(lifes, new V2d(0, 0), TypeObj.BRICK);
+    public Brick(final P2d pos, final Double widthToSet, final Double heightToSet, final int lifeToSet) {
+        super(lifeToSet, new V2d(0, 0), TypeObj.BRICK);
         this.powerUp = TypePower.NULL;
         this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
     }

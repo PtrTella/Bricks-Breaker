@@ -2,7 +2,7 @@ package main.controllers.state.event;
 
 import main.model.GameState;
 
-public interface WorldEvent {
+public interface HitObjects {
 
     void process(GameState currentGame);
     
