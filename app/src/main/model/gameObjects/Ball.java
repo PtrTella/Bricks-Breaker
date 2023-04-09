@@ -5,33 +5,31 @@ import main.model.gameObjects.bounding.CircleBoundingBox;
 
 public class Ball extends GameObjectImpl {
 
-	private CircleBoundingBox bbox;
+    private static final int DEFAULT_BALL_LIFE = 1;
+	private static final double RADIUS = 10;
 
 	public Ball(final P2d center, final Double radius, final V2d vel){
-		super(vel, TypeObj.BALL);
-		this.bbox = new CircleBoundingBox(center, radius);
+		super(Ball.DEFAULT_BALL_LIFE, TypeObj.BALL, new CircleBoundingBox(center, RADIUS));
 	}
-
-	@Override
-    public P2d getPosition() {
-        return bbox.getP2d();
-    }
-    
-    @Override
-    public void setPosition(P2d newPosition) {
-        bbox.setP2d(newPosition);
-    }
-    
-    @Override
-    public CircleBoundingBox getBBox() {
-        return this.bbox;
-    }
     
     // TODO two method only for ball
 	public void flipVelOnY(){
 		this.setSpeed(new V2d(this.getSpeed().getX(), -this.getSpeed().getY()));
 	}
+
 	public void flipVelOnX(){
 		this.setSpeed(new V2d(-this.getSpeed().getX(), this.getSpeed().getY()));
+	}
+
+	@Override
+	public void update(long elapsed) {
+		V2d speed = this.getSpeed();
+		P2d position = this.getPosition();
+
+
+		position.setX(position.getX() + speed.getX());
+		position.setY(position.getY() + speed.getY());
+
+		this.setPosition(position);
 	}
 }

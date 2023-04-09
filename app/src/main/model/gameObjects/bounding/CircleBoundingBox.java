@@ -29,5 +29,11 @@ public class CircleBoundingBox implements BoundingBox{
     public void setRadius(Double radius) {
         this.radius = radius;
     }
+
+    @Override
+    public boolean isCollidingWith(BoundingBox boxToCheck) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isCollidingWith'");
+    }
     
 }

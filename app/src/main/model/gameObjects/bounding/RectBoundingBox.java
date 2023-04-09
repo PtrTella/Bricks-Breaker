@@ -66,4 +66,17 @@ public class RectBoundingBox implements BoundingBox{
         return false;
     }
 
+    /**
+     * First method : create a contains(P2d) method and check if every angle of the current box
+     *                is contained in the box passed as argument.
+     * 
+     * Second method : create directly the specific method in BoundingBox.
+     * 
+     * In the multiball point of view, the balls has to collide with each other, maybe.
+     */
+    @Override
+    public boolean isCollidingWith(BoundingBox boxToCheck) {
+        
+    }
+
 }

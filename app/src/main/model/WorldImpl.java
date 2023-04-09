@@ -9,6 +9,7 @@ import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
 import main.model.gameObjects.PowerUp;
+import main.model.gameObjects.bounding.CircleBoundingBox;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class WorldImpl implements World {
@@ -31,7 +32,7 @@ public class WorldImpl implements World {
 
     @Override
     public void checkCollision() {
-        RectBoundingBox barBox = this.bar.getBBox();
+        RectBoundingBox barBox = (RectBoundingBox) this.bar.getBBox();
 
         for(PowerUp p : this.powerUps) {
             if(p.getBBox().isCollidingWith(barBox.getP2d(), barBox.getWidth(), barBox.getHeight())) {
@@ -40,7 +41,9 @@ public class WorldImpl implements World {
         }
 
         for(Brick b : this.bricks) {
-            if (b.getBBox().isCollidingWith(this.ball.getPosition(), this.ball.getBBox().getRadius())) {
+            CircleBoundingBox ballBox = (CircleBoundingBox) this.ball.getBBox();
+
+            if (b.getBBox().isCollidingWith(this.ball.getPosition(), ballBox.getRadius())) {
                 this.listener.notifyEvent(new HittedBrickEvent(b));
             }
         }
@@ -54,6 +57,11 @@ public class WorldImpl implements World {
     @Override
     public List<Brick> getBricks() {
         return this.getBricks();
+    }
+
+    @Override
+    public List<Ball> getBalls() {
+        return this.bal
     }
     
 }
