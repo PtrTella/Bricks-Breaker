@@ -4,8 +4,9 @@ import main.common.P2d;
 
 public interface BoundingBox {
     
-    public P2d getP2d();
+    P2d getP2d();
+    
+    void setP2d(final P2d pos);
 
-	public void setP2d(final P2d pos);
-
+    boolean isCollidingWith(final BoundingBox boxToCheck);
 }
