@@ -21,6 +21,14 @@ public class P2d implements java.io.Serializable {
         return this.y;
     }
 
+    public void setX(final double newX) {
+        this.x = newX;
+    }
+
+    public void setY(final double newY) {
+        this.y = newY;
+    }
+
     public P2d sum(V2d v){
         return new P2d(x+v.getX(), y+v.getY());
     }
