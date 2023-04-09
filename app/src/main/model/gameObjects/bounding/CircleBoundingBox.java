@@ -22,7 +22,7 @@ public class CircleBoundingBox implements BoundingBox{
         this.pos = pos;
     }
 
-    public Double getRadius() {
+    public Double getRad() {
         return this.radius;
     }
 

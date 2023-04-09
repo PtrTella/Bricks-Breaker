@@ -1,13 +1,11 @@
 package main.model.gameObjects.bounding;
 
 import main.common.P2d;
-
-/*togliere BoundingBox e BoundingBoxImpl */
-/*mettere la creazione del bounding box nel costruttore del Brick... */
+import java.lang.Math;
 
 public class RectBoundingBox implements BoundingBox{
 
-    private P2d pos;     /*upper-left - bottom-right */
+    private P2d pos;
     private Double width, height;
 
     public RectBoundingBox(final P2d p, final Double width, final Double height){
@@ -33,13 +31,21 @@ public class RectBoundingBox implements BoundingBox{
     public Double getHeight(){
         return this.height;
     }
+    
+    public P2d getULCorner(){
+        return new P2d(pos.getX() - width/2, pos.getY() - height/2);
+    }
+    
+    public P2d getBRCorner(){
+        return new P2d(pos.getX() + width/2, pos.getY() + height/2);
+    }
 
     /* collison between two rectangles */
-    public boolean isCollidingWith(P2d p, Double w, Double h) {
-        P2d ul = getULCorner(pos, width, height);
-        P2d br = getBRCorner(pos, width, height);
-        P2d pul = getULCorner(p, w, h);
-        P2d pbr = getBRCorner(pul, w, h);
+    public boolean isCollidingWith(RectBoundingBox rect) {
+        P2d ul = getULCorner();
+        P2d br = getBRCorner();
+        P2d pul = new P2d(rect.pos.getX() - rect.width/2, rect.pos.getY() - rect.height/2);
+        P2d pbr = new P2d(rect.pos.getX() + rect.width/2, rect.pos.getY() + rect.height/2);
         
         return (ul.getX() <= pul.getX() &&
                 ul.getY() <= pul.getY() &&
@@ -52,18 +58,24 @@ public class RectBoundingBox implements BoundingBox{
                 br.getY() >= pbr.getY());
     }
 
-    public P2d getULCorner(P2d p, Double width, Double height){
-		return new P2d(p.getX() - width/2, p.getY() - height/2);
-	}
-	
-	public P2d getBRCorner(P2d p, Double w, Double h){
-		return new P2d(p.getX() + w/2, p.getY() + h/2);
-    }
-
-    // TODO implement method collision
     /* collision between circle and rectangle */
-    public boolean isCollidingWith(P2d center, Double radius){
-        return false;
+    public boolean isCollidingWith(CircleBoundingBox circ){
+        Double circDistX = Math.abs(circ.getP2d().getX() - pos.getX());
+        Double circDistY = Math.abs(circ.getP2d().getY() - pos.getY());
+ 
+        if(circDistX > (width/2 + circ.getRad()) || circDistY > (height/2 + circ.getRad())){
+            return false;
+        }
+
+        if(circDistX <= (width/2) || circDistY <= (height/2)){
+            return true;
+        }
+
+        Double dx = circDistX - width/2;
+        Double dy = circDistY - height/2;
+        
+        return ((dx*dx + dy*dy) <= (circ.getRad() * circ.getRad()));
+
     }
 
     /**

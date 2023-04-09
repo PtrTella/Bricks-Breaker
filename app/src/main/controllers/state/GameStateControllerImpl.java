@@ -50,7 +50,6 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     @Override
     public void updateGame(final int elapsed) {
         this.getModel().updateGame(elapsed);
-        this.getModel().getWorld().checkBoundary();
         this.processEvents();
         this.getModel().getWorld().checkCollision();
         this.processEvents();

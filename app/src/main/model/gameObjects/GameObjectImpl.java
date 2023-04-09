@@ -5,7 +5,7 @@ import main.model.gameObjects.bounding.BoundingBox;
 
 public abstract class GameObjectImpl implements GameObject {
 
-    private int lifes;
+    private Integer lifes;
     private TypeObj type;
 	private V2d vel;
     private BoundingBox box;

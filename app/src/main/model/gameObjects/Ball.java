@@ -12,7 +12,6 @@ public class Ball extends GameObjectImpl {
 		super(Ball.DEFAULT_BALL_LIFE, TypeObj.BALL, new CircleBoundingBox(center, RADIUS));
 	}
     
-    // TODO two method only for ball
 	public void flipVelOnY(){
 		this.setSpeed(new V2d(this.getSpeed().getX(), -this.getSpeed().getY()));
 	}
