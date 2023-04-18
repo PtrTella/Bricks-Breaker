@@ -81,7 +81,7 @@ public class WorldImpl implements World {
         this.bricks.remove(brick);
         if(brick.getPowerUp() != TypePower.NULL){
             // TODO choose width and height of power up
-            this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), 1.0, 1.0, brick.getPowerUp()));
+            this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), brick.getPowerUp()));
         }
         //return this.bricks.size();
     }

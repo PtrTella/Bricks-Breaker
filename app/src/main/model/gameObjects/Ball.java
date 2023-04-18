@@ -4,32 +4,26 @@ import main.common.*;
 import main.model.WorldImpl;
 import main.model.gameObjects.bounding.CircleBoundingBox;
 
-public class Ball extends GameObjectImpl {
+public class Ball extends GameObjectImpl<CircleBoundingBox> {
 
-	private CircleBoundingBox bbox;
+    private static final Double RADIUS = 1.0;
 
-	public Ball(final P2d center, final Double radius, final V2d vel){
-		super(1,vel, WorldImpl.TypeObj.BALL);
-		this.bbox = new CircleBoundingBox(center, radius);
+	public Ball(final P2d center, final V2d vel){
+		super(1,vel, WorldImpl.TypeObj.BALL, new CircleBoundingBox(center, RADIUS));
 	}
 
 	@Override
     public P2d getPosition() {
-        return bbox.getP2d();
+        return this.getBBox().getP2d();
     }
     
     @Override
     public void setPosition(P2d newPosition) {
-        bbox.setP2d(newPosition);
+        this.getBBox().setP2d(newPosition);
     }
 
     public Double getRadius() {
-        return bbox.getRad();
-    }
-    
-    @Override
-    public CircleBoundingBox getBBox() {
-        return this.bbox;
+        return this.getBBox().getRad();
     }
     
 	public void flipVelOnY(){

@@ -4,28 +4,23 @@ import main.common.*;
 import main.model.WorldImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
-public class Bar extends GameObjectImpl{
+public class Bar extends GameObjectImpl<RectBoundingBox>{
 
-    private RectBoundingBox bbox;
+    private static final Double BAR_WIDTH = 5.0;
+    private static final Double BAR_HEIGHT = 1.0;
 
-    public Bar(P2d pos, final Double widthToSet, final Double heightToSet, V2d vel, final Integer lifeToset) {
-        super(lifeToset, vel, WorldImpl.TypeObj.BAR);  // TODO change vel of bar
-        this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
+    public Bar(P2d pos, V2d vel, final Integer lifeToset) {
+        super(lifeToset, vel, WorldImpl.TypeObj.BAR, new RectBoundingBox(pos, BAR_WIDTH, BAR_HEIGHT));  // TODO change vel of bar
     }
 
     @Override
     public P2d getPosition() {
-        return bbox.getP2d();
+        return this.getBBox().getP2d();
     }
     
     @Override
     public void setPosition(P2d newPosition) {
-        bbox.setP2d(newPosition);
-    }
-    
-    @Override
-    public RectBoundingBox getBBox() {
-        return this.bbox;
+        this.getBBox().setP2d(newPosition);
     }
     
 }

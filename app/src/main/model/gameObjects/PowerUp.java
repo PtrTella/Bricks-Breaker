@@ -5,15 +5,15 @@ import main.common.V2d;
 import main.model.WorldImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
-public class PowerUp extends GameObjectImpl{
+public class PowerUp extends GameObjectImpl<RectBoundingBox>{
     
+    private final static Double POWERUP_WIDTH = 1.5;
+    private final static Double POWERUP_HEIGHT = 0.8;
     private final TypePower powerUp;
-    private RectBoundingBox bbox;
 
-    public PowerUp(final P2d pos, final Double widthToSet, final Double heightToSet, final TypePower powerToSet) {
-        super(1,new V2d(0, -5), WorldImpl.TypeObj.POWERUP);     //TODO: adapt falling speed
+    public PowerUp(final P2d pos, final TypePower powerToSet) {
+        super(1,new V2d(0, -5), WorldImpl.TypeObj.POWERUP, new RectBoundingBox(pos,POWERUP_WIDTH,POWERUP_HEIGHT));     //TODO: adapt falling speed
         this.powerUp = powerToSet;
-        this.bbox = new RectBoundingBox(pos,widthToSet,heightToSet);
     }
 
     public TypePower getPowerUp() {
@@ -22,16 +22,11 @@ public class PowerUp extends GameObjectImpl{
 
     @Override
     public P2d getPosition() {
-        return bbox.getP2d();
+        return this.getBBox().getP2d();
     }
     
     @Override
     public void setPosition(P2d newPosition) {
-        bbox.setP2d(newPosition);
-    }
-    
-    @Override
-    public RectBoundingBox getBBox() {
-        return this.bbox;
+        this.getBBox().setP2d(newPosition);
     }
 }
