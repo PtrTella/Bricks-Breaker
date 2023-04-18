@@ -11,6 +11,20 @@ public class Ball extends GameObjectImpl<CircleBoundingBox> {
 	public Ball(final P2d center, final V2d vel){
 		super(1,vel, WorldImpl.TypeObj.BALL, new CircleBoundingBox(center, RADIUS));
 	}
+
+	@Override
+    public P2d getPosition() {
+        return this.getBBox().getP2d();
+    }
+    
+    @Override
+    public void setPosition(P2d newPosition) {
+        this.getBBox().setP2d(newPosition);
+    }
+
+    public Double getRadius() {
+        return this.getBBox().getRad();
+    }
     
 	public void flipVelOnY(){
 		this.setSpeed(new V2d(this.getSpeed().getX(), -this.getSpeed().getY()));

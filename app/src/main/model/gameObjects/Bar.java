@@ -12,5 +12,15 @@ public class Bar extends GameObjectImpl<RectBoundingBox>{
     public Bar(P2d pos, V2d vel, final Integer lifeToset) {
         super(lifeToset, vel, WorldImpl.TypeObj.BAR, new RectBoundingBox(pos, BAR_WIDTH, BAR_HEIGHT));  // TODO change vel of bar
     }
+
+    @Override
+    public P2d getPosition() {
+        return this.getBBox().getP2d();
+    }
+    
+    @Override
+    public void setPosition(P2d newPosition) {
+        this.getBBox().setP2d(newPosition);
+    }
     
 }

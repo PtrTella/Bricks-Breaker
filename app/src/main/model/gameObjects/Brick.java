@@ -24,4 +24,14 @@ public class Brick extends GameObjectImpl<RectBoundingBox>{
         return this.powerUp;
     }
 
+    @Override
+    public P2d getPosition() {
+        return this.getBBox().getP2d();
+    }
+
+    @Override
+    public void setPosition(P2d newPosition) {
+        this.getBBox().setP2d(newPosition);
+    }
+
 }

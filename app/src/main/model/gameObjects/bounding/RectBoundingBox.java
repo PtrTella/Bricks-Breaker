@@ -14,13 +14,11 @@ public class RectBoundingBox implements BoundingBox{
         this.height = height;
 	}
 
-    @Override
-    public P2d getPos() {
+    public P2d getP2d() {
         return this.pos;
     }
 
-    @Override
-    public void setPos(P2d pos) {
+    public void setP2d(P2d pos) {
         this.pos = pos;
     }
 
@@ -33,7 +31,7 @@ public class RectBoundingBox implements BoundingBox{
     }
     
     public P2d getULCorner(){
-        return new P2d(pos.getX() - width/2.0, pos.getY() - height/2);
+        return new P2d(pos.getX() - width/2, pos.getY() - height/2);
     }
     
     public P2d getBRCorner(){
@@ -63,10 +61,10 @@ public class RectBoundingBox implements BoundingBox{
         }else if(obj instanceof CircleBoundingBox) {
 
             CircleBoundingBox circ = (CircleBoundingBox) obj;
-            Double circDistX = Math.abs(circ.getPos().getX() - pos.getX());
-            Double circDistY = Math.abs(circ.getPos().getY() - pos.getY());
+            Double circDistX = Math.abs(circ.getP2d().getX() - pos.getX());
+            Double circDistY = Math.abs(circ.getP2d().getY() - pos.getY());
     
-            if(circDistX > (width/2 + circ.getRadius()) || circDistY > (height/2 + circ.getRadius())){
+            if(circDistX > (width/2 + circ.getRad()) || circDistY > (height/2 + circ.getRad())){
                 return false;
             }
 
@@ -77,7 +75,7 @@ public class RectBoundingBox implements BoundingBox{
             Double dx = circDistX - width/2;
             Double dy = circDistY - height/2;
             
-            return ((dx*dx + dy*dy) <= (circ.getRadius() * circ.getRadius()));
+            return ((dx*dx + dy*dy) <= (circ.getRad() * circ.getRad()));
 
         }
         return false;

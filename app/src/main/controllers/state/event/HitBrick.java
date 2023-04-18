@@ -25,7 +25,7 @@ public class HitBrick implements HitObjects {
 
         P2d ul = hittedBrick.getBBox().getULCorner();
         P2d br = hittedBrick.getBBox().getBRCorner();
-        P2d bpoint = ball.getBBox().getPos();
+        P2d bpoint = ball.getPosition();
 
         if( ul.getY() > bpoint.getY() ){
             if( (ul.getX() > bpoint.getX() && ul.vertDist(bpoint.getY()) < ul.orizDist(bpoint.getX())) ||

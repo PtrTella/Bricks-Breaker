@@ -13,6 +13,10 @@ public interface GameObject<T> {
 
     TypeObj getType();
 
+    P2d getPosition();
+
+    void setPosition(final P2d newPosition);
+
     V2d getSpeed();
 
     void setSpeed(final V2d speed);
