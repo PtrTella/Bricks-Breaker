@@ -32,5 +32,13 @@ public class P2d implements java.io.Serializable {
     public String toString(){
         return "P2d("+x+","+y+")";
     }
+    
+    public Double orizDist(double xp){
+        return Math.sqrt(Math.pow(x-xp, 2));
+    }
+
+    public Double vertDist(double yp){
+        return Math.sqrt(Math.pow(y-yp, 2));
+    }
 
 }

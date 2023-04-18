@@ -1,5 +1,6 @@
 package main.controllers.state.event;
 
+import main.common.P2d;
 import main.model.GameState;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Brick;
@@ -22,11 +23,26 @@ public class HitBrick implements HitObjects {
             currentGame.getWorld().removeBrick(this.hittedBrick);
         }
 
-        if( hittedBrick.getBBox().getULCorner().getY() > ball.getPosition().getY() && 
-            hittedBrick.getBBox().getBRCorner().getY() < ball.getPosition().getY() ){
-            ball.flipVelOnX();
-        }else{
+        P2d ul = hittedBrick.getBBox().getULCorner();
+        P2d br = hittedBrick.getBBox().getBRCorner();
+        P2d bpoint = ball.getPosition();
+
+        if( ul.getY() > bpoint.getY() ){
+            if( (ul.getX() > bpoint.getX() && ul.vertDist(bpoint.getY()) < ul.orizDist(bpoint.getX())) ||
+                (br.getX() < bpoint.getX() && ul.vertDist(bpoint.getY()) < br.orizDist(bpoint.getX()))
+            ){
+                ball.flipVelOnX();
+            }
             ball.flipVelOnY();
+        }else if( br.getY() < bpoint.getY() ){
+            if( (ul.getX() > bpoint.getX() && br.vertDist(bpoint.getY()) < ul.orizDist(bpoint.getX())) ||
+                (br.getX() < bpoint.getX() && br.vertDist(bpoint.getY()) < br.orizDist(bpoint.getX()))
+            ){
+                ball.flipVelOnX();
+            }
+            ball.flipVelOnY();
+        }else {
+            ball.flipVelOnX();
         }
     }
     
