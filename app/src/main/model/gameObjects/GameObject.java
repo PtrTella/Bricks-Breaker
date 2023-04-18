@@ -1,6 +1,7 @@
 package main.model.gameObjects;
 
 import main.common.*;
+import main.model.WorldImpl.TypeObj;
 import main.model.gameObjects.bounding.BoundingBox;
 
 public interface GameObject {

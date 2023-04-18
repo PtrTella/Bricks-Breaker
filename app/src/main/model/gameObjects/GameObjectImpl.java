@@ -1,6 +1,7 @@
 package main.model.gameObjects;
 
 import main.common.*;
+import main.model.WorldImpl.TypeObj;
 
 public abstract class GameObjectImpl implements GameObject {
 

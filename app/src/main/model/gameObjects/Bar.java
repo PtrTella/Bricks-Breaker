@@ -1,6 +1,7 @@
 package main.model.gameObjects;
 
 import main.common.*;
+import main.model.WorldImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class Bar extends GameObjectImpl{
@@ -8,7 +9,7 @@ public class Bar extends GameObjectImpl{
     private RectBoundingBox bbox;
 
     public Bar(P2d pos, final Double widthToSet, final Double heightToSet, V2d vel, final Integer lifeToset) {
-        super(lifeToset, vel, TypeObj.BAR);  // TODO change vel of bar
+        super(lifeToset, vel, WorldImpl.TypeObj.BAR);  // TODO change vel of bar
         this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
     }
 

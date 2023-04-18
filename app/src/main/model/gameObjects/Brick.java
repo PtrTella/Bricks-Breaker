@@ -2,6 +2,7 @@ package main.model.gameObjects;
 
 import main.common.P2d;
 import main.common.V2d;
+import main.model.WorldImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class Brick extends GameObjectImpl{
@@ -10,7 +11,7 @@ public class Brick extends GameObjectImpl{
 	private RectBoundingBox bbox;
 
     public Brick(final P2d pos, final Double widthToSet, final Double heightToSet, final int lifeToSet) {
-        super(lifeToSet, new V2d(0, 0), TypeObj.BRICK);
+        super(lifeToSet, new V2d(0, 0), WorldImpl.TypeObj.BRICK);
         this.powerUp = TypePower.NULL;
         this.bbox = new RectBoundingBox(pos, widthToSet, heightToSet);
     }

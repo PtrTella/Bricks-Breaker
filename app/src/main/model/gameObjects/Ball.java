@@ -1,6 +1,7 @@
 package main.model.gameObjects;
 
 import main.common.*;
+import main.model.WorldImpl;
 import main.model.gameObjects.bounding.CircleBoundingBox;
 
 public class Ball extends GameObjectImpl {
@@ -8,7 +9,7 @@ public class Ball extends GameObjectImpl {
 	private CircleBoundingBox bbox;
 
 	public Ball(final P2d center, final Double radius, final V2d vel){
-		super(1,vel, TypeObj.BALL);
+		super(1,vel, WorldImpl.TypeObj.BALL);
 		this.bbox = new CircleBoundingBox(center, radius);
 	}
 

@@ -20,6 +20,7 @@ import main.model.gameObjects.bounding.RectBoundingBox;
 public class WorldImpl implements World {
 
     public enum SideCollision { TOP, BOTTOM, LEFT, RIGHT };
+    public static enum TypeObj { BALL, BRICK, BAR, POWERUP }
 
     private List<Ball> balls;
     private Bar bar;

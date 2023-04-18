@@ -2,6 +2,7 @@ package main.model.gameObjects;
 
 import main.common.P2d;
 import main.common.V2d;
+import main.model.WorldImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class PowerUp extends GameObjectImpl{
@@ -10,7 +11,7 @@ public class PowerUp extends GameObjectImpl{
     private RectBoundingBox bbox;
 
     public PowerUp(final P2d pos, final Double widthToSet, final Double heightToSet, final TypePower powerToSet) {
-        super(1,new V2d(0, -5), TypeObj.POWERUP);     //TODO: adapt falling speed
+        super(1,new V2d(0, -5), WorldImpl.TypeObj.POWERUP);     //TODO: adapt falling speed
         this.powerUp = powerToSet;
         this.bbox = new RectBoundingBox(pos,widthToSet,heightToSet);
     }
