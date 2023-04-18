@@ -81,7 +81,7 @@ public class WorldImpl implements World {
         this.bricks.remove(brick);
         if(brick.getPowerUp() != TypePower.NULL){
             // TODO choose width and height of power up
-            this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), brick.getPowerUp()));
+            this.activePowerUps.add(new PowerUp(brick.getBBox().getPos(), brick.getPowerUp()));
         }
         //return this.bricks.size();
     }
@@ -112,8 +112,8 @@ public class WorldImpl implements World {
 		P2d br = mainBBox.getBRCorner();
         
         for(Ball ball : this.balls){
-            P2d pos = ball.getPosition();
-            Double r = ball.getRadius();
+            P2d pos = ball.getBBox().getPos();
+            Double r = ball.getBBox().getRadius();
             
             if(pos.getY() + r > ul.getY()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.TOP, ul.getY()));      //TOP-BORDER
@@ -141,7 +141,7 @@ public class WorldImpl implements World {
     private void checkCollisionWithPowerUp(){
         for(PowerUp p : this.activePowerUps){
             
-            if(p.getPosition().getY() - p.getBBox().getHeight()/2 < mainBBox.getBRCorner().getY()){
+            if(p.getBBox().getPos().getY() - p.getBBox().getHeight()/2 < mainBBox.getBRCorner().getY()){
                 this.activePowerUps.remove(p);
             }else if(p.getBBox().isCollidingWith(bar.getBBox())){
                 this.evListener.notifyEvent(new HitPowerUp(p));

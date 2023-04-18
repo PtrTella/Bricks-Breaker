@@ -4,6 +4,7 @@ import main.common.P2d;
 import main.model.GameState;
 import main.model.WorldImpl.SideCollision;
 import main.model.gameObjects.Ball;
+import main.model.gameObjects.bounding.CircleBoundingBox;
 
 public class HitBorder implements HitObjects {
 
@@ -20,20 +21,22 @@ public class HitBorder implements HitObjects {
     @Override
     public void process(GameState currentGame) {
         
+        CircleBoundingBox b = ball.getBBox();
+
         switch(this.side){
             case TOP:
-                ball.setPosition(new P2d(ball.getPosition().getX(), newPos - ball.getBBox().getRad()));
+                b.setPos(new P2d(b.getPos().getX(), newPos - b.getRadius()));
                 ball.flipVelOnY();
                 break;
             case BOTTOM:
                 currentGame.getWorld().removeBall(ball);
                 break;
             case LEFT:
-                ball.setPosition(new P2d(newPos + ball.getBBox().getRad(), ball.getPosition().getY()));
+                b.setPos(new P2d(newPos + b.getRadius(), b.getPos().getY()));
                 ball.flipVelOnX();
                 break;
             case RIGHT:
-                ball.setPosition(new P2d(newPos - ball.getBBox().getRad(), ball.getPosition().getY()));
+                b.setPos(new P2d(newPos - b.getRadius(), b.getPos().getY()));
                 ball.flipVelOnX();
                 break;
         }

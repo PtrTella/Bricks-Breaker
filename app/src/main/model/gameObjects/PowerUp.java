@@ -19,14 +19,4 @@ public class PowerUp extends GameObjectImpl<RectBoundingBox>{
     public TypePower getPowerUp() {
         return this.powerUp;
     }
-
-    @Override
-    public P2d getPosition() {
-        return this.getBBox().getP2d();
-    }
-    
-    @Override
-    public void setPosition(P2d newPosition) {
-        this.getBBox().setP2d(newPosition);
-    }
 }

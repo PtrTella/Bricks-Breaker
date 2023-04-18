@@ -12,15 +12,17 @@ public class CircleBoundingBox implements BoundingBox{
         this.radius = radius;
     }
 
-    public P2d getP2d() {
+    @Override
+    public P2d getPos() {
         return this.pos;
     }
 
-    public void setP2d(P2d pos) {
+    @Override
+    public void setPos(P2d pos) {
         this.pos = pos;
     }
 
-    public Double getRad() {
+    public Double getRadius() {
         return this.radius;
     }
 
