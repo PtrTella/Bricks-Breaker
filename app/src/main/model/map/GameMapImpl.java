@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class GameMapImpl implements GameMap {
     
     // TODO change lineBrick and brickInLine when implementing views
-    private final Integer lineMap = 4;
-    private final Integer columnMap = 6;
+    private final Integer LINEMAP = 4;
+    private final Integer COLUMNMAP = 6;
 
     private final String sep;
     private final String path;
@@ -45,7 +45,7 @@ public class GameMapImpl implements GameMap {
                 this.mapName = "";
                 e.printStackTrace();
             }
-            if( (currentMap.size() % lineMap) != 0 || (currentMap.size() % columnMap) != 0 ){
+            if( (currentMap.size() % (LINEMAP*COLUMNMAP)) != 0 ){
                 return List.of();
             }
         }
@@ -54,12 +54,12 @@ public class GameMapImpl implements GameMap {
 
     @Override
     public Integer getLineMap() {
-        return this.lineMap;
+        return this.LINEMAP;
     }
 
     @Override
     public Integer getColumnMap() {
-        return this.columnMap;
+        return this.COLUMNMAP;
     }
 
 }
