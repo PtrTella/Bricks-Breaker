@@ -2,8 +2,9 @@ package main.model.gameObjects;
 
 import main.common.*;
 import main.model.WorldImpl.TypeObj;
+import main.model.gameObjects.bounding.BoundingBox;
 
-public abstract class GameObjectImpl<T> implements GameObject<T> {
+public abstract class GameObjectImpl<T extends BoundingBox> implements GameObject<T> {
 
     private Integer lifes;
     private TypeObj type;
@@ -37,10 +38,23 @@ public abstract class GameObjectImpl<T> implements GameObject<T> {
         return type;
     }
 
+    
+    @Override
+    public P2d getPosition() {
+        return this.bbox.getP2d();
+    }
+
+    @Override
+    public void setPosition(P2d newPosition) {
+        this.bbox.setP2d(newPosition);
+    }
+
+    @Override
     public V2d getSpeed() {
         return vel;
     }
 
+    @Override
 	public void setSpeed(final V2d vel){
 		this.vel = vel;
 	}

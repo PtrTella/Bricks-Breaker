@@ -12,16 +12,6 @@ public class Ball extends GameObjectImpl<CircleBoundingBox> {
 		super(1,vel, WorldImpl.TypeObj.BALL, new CircleBoundingBox(center, RADIUS));
 	}
 
-	@Override
-    public P2d getPosition() {
-        return this.getBBox().getP2d();
-    }
-    
-    @Override
-    public void setPosition(P2d newPosition) {
-        this.getBBox().setP2d(newPosition);
-    }
-
     public Double getRadius() {
         return this.getBBox().getRad();
     }

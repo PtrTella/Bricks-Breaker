@@ -22,18 +22,18 @@ public class HitBorder implements HitObjects {
         
         switch(this.side){
             case TOP:
-                ball.setPosition(new P2d(ball.getPosition().getX(), newPos - ball.getBBox().getRad()));
+                ball.setPosition(new P2d(ball.getPosition().getX(), newPos - ball.getRadius()));
                 ball.flipVelOnY();
                 break;
             case BOTTOM:
                 currentGame.getWorld().removeBall(ball);
                 break;
             case LEFT:
-                ball.setPosition(new P2d(newPos + ball.getBBox().getRad(), ball.getPosition().getY()));
+                ball.setPosition(new P2d(newPos + ball.getRadius(), ball.getPosition().getY()));
                 ball.flipVelOnX();
                 break;
             case RIGHT:
-                ball.setPosition(new P2d(newPos - ball.getBBox().getRad(), ball.getPosition().getY()));
+                ball.setPosition(new P2d(newPos - ball.getRadius(), ball.getPosition().getY()));
                 ball.flipVelOnX();
                 break;
         }

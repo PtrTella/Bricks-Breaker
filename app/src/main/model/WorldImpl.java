@@ -141,7 +141,7 @@ public class WorldImpl implements World {
     private void checkCollisionWithPowerUp(){
         for(PowerUp p : this.activePowerUps){
             
-            if(p.getPosition().getY() - p.getBBox().getHeight()/2 < mainBBox.getBRCorner().getY()){
+            if(p.getPosition().getY() - p.getHeight()/2 < mainBBox.getBRCorner().getY()){
                 this.activePowerUps.remove(p);
             }else if(p.getBBox().isCollidingWith(bar.getBBox())){
                 this.evListener.notifyEvent(new HitPowerUp(p));
