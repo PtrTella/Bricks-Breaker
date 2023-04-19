@@ -32,15 +32,17 @@ public class HitBrick implements HitObjects {
                 (br.getX() < bpoint.getX() && ul.vertDist(bpoint.getY()) < br.orizDist(bpoint.getX()))
             ){
                 ball.flipVelOnX();
+            }else{
+                ball.flipVelOnY();
             }
-            ball.flipVelOnY();
         }else if( br.getY() < bpoint.getY() ){
             if( (ul.getX() > bpoint.getX() && br.vertDist(bpoint.getY()) < ul.orizDist(bpoint.getX())) ||
                 (br.getX() < bpoint.getX() && br.vertDist(bpoint.getY()) < br.orizDist(bpoint.getX()))
             ){
                 ball.flipVelOnX();
+            }else{
+                ball.flipVelOnY();
             }
-            ball.flipVelOnY();
         }else {
             ball.flipVelOnX();
         }
