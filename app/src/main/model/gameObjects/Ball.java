@@ -15,6 +15,10 @@ public class Ball extends GameObjectImpl<CircleBoundingBox> {
     public Double getRadius() {
         return this.getBBox().getRad();
     }
+
+	public void setRadius(final Double radius) {
+		this.getBBox().setRadius(radius);
+	}
     
 	public void flipVelOnY(){
 		this.setSpeed(new V2d(this.getSpeed().getX(), -this.getSpeed().getY()));
