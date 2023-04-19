@@ -19,8 +19,8 @@ import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class WorldImpl implements World {
 
-    public enum SideCollision { TOP, BOTTOM, LEFT, RIGHT };
     public static enum TypeObj { BALL, BRICK, BAR, POWERUP }
+    public enum SideCollision { TOP, BOTTOM, LEFT, RIGHT }
 
     private List<Ball> balls;
     private Bar bar;
@@ -31,7 +31,7 @@ public class WorldImpl implements World {
 
     public WorldImpl(final RectBoundingBox bbox, final Ball ballToSet, 
                     final Bar barToSet, final List<Brick> bricks, final List<TypePower> powerUps) {
-        this.balls.add(ballToSet);
+        this.balls.add(ballToSet);  // the game start always with a single ball
         this.bar = barToSet;
         this.bricks.addAll(bricks);
         randomPowerUpAssignament(bricks, powerUps);
@@ -80,7 +80,6 @@ public class WorldImpl implements World {
     public void removeBrick(Brick brick){
         this.bricks.remove(brick);
         if(brick.getPowerUp() != TypePower.NULL){
-            // TODO choose width and height of power up
             this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), brick.getPowerUp()));
         }
         //return this.bricks.size();
