@@ -1,5 +1,6 @@
 package main.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -35,6 +36,7 @@ public class WorldImpl implements World {
         this.bar = barToSet;
         this.bricks.addAll(bricks);
         randomPowerUpAssignament(bricks, powerUps);
+        this.activePowerUps = new ArrayList<>();
         this.mainBBox = bbox;
     }
 
@@ -63,7 +65,6 @@ public class WorldImpl implements World {
     @Override
     public void removeBall(Ball ball) {
         this.balls.remove(ball);
-        //return this.balls.size();
     }
 
     @Override
@@ -78,11 +79,10 @@ public class WorldImpl implements World {
 
     @Override
     public void removeBrick(Brick brick){
-        this.bricks.remove(brick);
         if(brick.getPowerUp() != TypePower.NULL){
             this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), brick.getPowerUp()));
         }
-        //return this.bricks.size();
+        this.bricks.remove(brick);
     }
 
     @Override
