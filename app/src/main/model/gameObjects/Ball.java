@@ -6,7 +6,7 @@ import main.model.gameObjects.bounding.CircleBoundingBox;
 
 public class Ball extends GameObjectImpl<CircleBoundingBox> {
 
-    private static final Double RADIUS = 1.0;
+    private static final Double RADIUS = 0.5;
 
 	public Ball(final P2d center, final V2d vel){
 		super(1,vel, WorldImpl.TypeObj.BALL, new CircleBoundingBox(center, RADIUS));

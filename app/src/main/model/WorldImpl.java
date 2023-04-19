@@ -32,8 +32,10 @@ public class WorldImpl implements World {
 
     public WorldImpl(final RectBoundingBox bbox, final Ball ballToSet, 
                     final Bar barToSet, final List<Brick> bricks, final List<TypePower> powerUps) {
+        this.balls = new ArrayList<>();
         this.balls.add(ballToSet);  // the game start always with a single ball
         this.bar = barToSet;
+        this.bricks = new ArrayList<>();
         this.bricks.addAll(bricks);
         randomPowerUpAssignament(bricks, powerUps);
         this.activePowerUps = new ArrayList<>();
@@ -99,6 +101,7 @@ public class WorldImpl implements World {
     public void checkCollision() {
         checkCollisionWithBall();
         checkCollisionWithPowerUp();
+        //evListener.processAll();
     }
     
     /*
@@ -114,9 +117,9 @@ public class WorldImpl implements World {
             P2d pos = ball.getPosition();
             Double r = ball.getRadius();
             
-            if(pos.getY() + r > ul.getY()){
+            if(pos.getY() - r < ul.getY()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.TOP, ul.getY()));      //TOP-BORDER
-            } else if(pos.getY() - r < br.getY()){
+            } else if(pos.getY() + r > br.getY()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.BOTTOM, br.getY()));   //BOTTOM-BORDER
             } else if(pos.getX() - r < ul.getX()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.LEFT, ul.getX()));     //LEFT-BORDER
