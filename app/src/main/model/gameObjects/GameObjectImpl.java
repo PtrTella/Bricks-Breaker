@@ -4,6 +4,9 @@ import main.common.*;
 import main.model.WorldImpl.TypeObj;
 import main.model.gameObjects.bounding.BoundingBox;
 
+/**
+ *  Abstract base class for all objects
+ */
 public abstract class GameObjectImpl<T extends BoundingBox> implements GameObject<T> {
 
     private Integer lifes;

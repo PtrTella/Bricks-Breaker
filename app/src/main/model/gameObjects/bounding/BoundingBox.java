@@ -8,6 +8,6 @@ public interface BoundingBox {
 
 	void setP2d(final P2d pos);
 
-    <T> boolean isCollidingWith(BoundingBox obj);
+    boolean isCollidingWith(BoundingBox obj);
 
 }

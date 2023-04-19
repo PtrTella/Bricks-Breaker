@@ -14,10 +14,12 @@ public class RectBoundingBox implements BoundingBox{
         this.height = height;
 	}
 
+    @Override
     public P2d getP2d() {
         return this.pos;
     }
 
+    @Override
     public void setP2d(P2d pos) {
         this.pos = pos;
     }
@@ -39,7 +41,7 @@ public class RectBoundingBox implements BoundingBox{
     }
     
     @Override
-    public <T> boolean isCollidingWith(BoundingBox obj) {
+    public boolean isCollidingWith(BoundingBox obj) {
         if(obj instanceof RectBoundingBox) {
             
             RectBoundingBox rect = (RectBoundingBox) obj;

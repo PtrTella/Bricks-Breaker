@@ -12,10 +12,12 @@ public class CircleBoundingBox implements BoundingBox{
         this.radius = radius;
     }
 
+    @Override
     public P2d getP2d() {
         return this.pos;
     }
 
+    @Override
     public void setP2d(P2d pos) {
         this.pos = pos;
     }
@@ -29,7 +31,7 @@ public class CircleBoundingBox implements BoundingBox{
     }
 
     @Override
-    public <T> boolean isCollidingWith(BoundingBox obj) {
+    public boolean isCollidingWith(BoundingBox obj) {
         return false;
     }
     
