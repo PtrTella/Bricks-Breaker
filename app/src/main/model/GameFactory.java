@@ -1,4 +1,4 @@
-package main.core;
+package main.model;
 
 public class GameFactory {
     
