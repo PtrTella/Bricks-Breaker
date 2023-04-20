@@ -1,8 +1,9 @@
-package main.model.gameObjects;
+package main.model.gameObjects.power;
 
 import main.common.P2d;
 import main.common.V2d;
 import main.model.WorldImpl;
+import main.model.gameObjects.GameObjectImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class PowerUp extends GameObjectImpl<RectBoundingBox>{
