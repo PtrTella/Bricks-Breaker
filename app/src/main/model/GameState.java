@@ -1,5 +1,6 @@
 package main.model;
 
+import main.model.GameStateImpl.State;
 import main.model.timer.Timer;
 import main.model.timer.TimerThread;
 
@@ -52,23 +53,10 @@ public interface GameState {
     void updateGame(final int elapsed);
 
     /**
-     * This method sets the current game as over.
-     * @param gameOver true, if the current game state as over, otherwise false.
+     * This method returns the current state.
+     * @return A State enum object
      */
-    void setGameOver(final boolean gameOver);
-
-    /**
-     * This method checks if the current game is over.
-     * @return true, if it's game over, otherwise false.
-     */
-    boolean isGameOver();
-
-    /**
-     * This method checks if is gamer over.
-     * Basically, it checks if the player ran out of time, or
-     * if the player does not have any 'life' to use.
-     */
-    void checkGameOver();
+    State getState();
 
     /**
      * This method returns the game timer thread.

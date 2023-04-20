@@ -11,10 +11,11 @@ import main.model.timer.TimerThread;
 public class GameStateImpl implements GameState {
 
     private static final int TIME = 300;
+    public static enum State { PLAYING, WIN, LOST}
 
     private World currentWorld;
     private int score = 0;
-    private boolean gameOver = false;
+    private State state;
     private Timer gameTimer;
     private TimerThread gameTimerThread;
 
@@ -24,9 +25,10 @@ public class GameStateImpl implements GameState {
     @Override
     public final void init() {
 
-        //TODO: Add creation of the world.
+        //TODO: Add creation of the world. this.currentWorld = new WorldImpl( pass the map );
         this.gameTimer = new TimerImpl(GameStateImpl.TIME);
         this.gameTimerThread = new TimerThread(this.gameTimer);
+        this.state = State.PLAYING;
     }
 
     /**
@@ -75,29 +77,19 @@ public class GameStateImpl implements GameState {
     @Override
     public final void updateGame(final int elapsed) {
         this.currentWorld.updateGame(elapsed);
-        this.checkGameOver();
     }
 
     /**
      * {@inheritDoc}}
      */
     @Override
-    public final boolean isGameOver() {
-        return this.gameOver;
-    }
-
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public final void checkGameOver() {
-        if (gameTimer.getTime().getTotal() == 0) {
-            this.gameOver = true;
+    public State getState() {
+        if (gameTimer.getTime().getTotal() == 0 || this.getWorld().getBar().getLife() <= 0) {
+            this.state = State.LOST;
         } else if (this.getWorld().getNumBricks() == 0) {
-            this.gameOver = true;
-        } else if (this.getWorld().getNumBalls() == 0) {
-            this.gameOver = true;
+            this.state = State.WIN;
         }
+        return this.state;
     }
 
     @Override
@@ -108,11 +100,6 @@ public class GameStateImpl implements GameState {
     @Override
     public Timer getGameTimer() {
         return this.gameTimer;
-    }
-
-    @Override
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
     }
      
 }

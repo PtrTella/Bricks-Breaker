@@ -3,6 +3,7 @@ package main.controllers.state;
 import main.controllers.ControllerImpl;
 import main.controllers.state.event.WorldEventListener;
 import main.controllers.state.event.WorldEventListenerImpl;
+import main.model.GameStateImpl.State;
 
 public class GameStateControllerImpl extends ControllerImpl implements GameStateController, Runnable {
 
@@ -60,7 +61,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
      */
     @Override
     public void quitGame() {
-        this.getModel().setGameOver(true);
+        //this.getModel().setGameOver(true);
         this.quit = true;
     }
 
@@ -99,7 +100,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     public void run() {
         long last = System.currentTimeMillis();
 
-        while(!this.getModel().isGameOver()) {
+        while(this.getModel().getState() == State.PLAYING) {
             long current = System.currentTimeMillis();
             int elapsed = (int) (current - last);
             this.processCommands();
@@ -110,7 +111,11 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
         }
 
         this.getModel().getGameTimerThread().stopTimer();
-        //TODO: Add the user to a rank.
+        if(this.getModel().getState() == State.WIN){
+            //TODO: Add the user to a rank.
+        }else if(this.getModel().getState() == State.LOST){
+
+        }
     }
 
     public void waitUntilNextFrame(final long currentFrame) {
