@@ -6,8 +6,8 @@ import java.util.Random;
 
 import main.common.P2d;
 import main.model.gameObjects.Brick;
-import main.model.gameObjects.TypePower;
 import main.model.gameObjects.bounding.RectBoundingBox;
+import main.model.gameObjects.power.TypePower;
 import main.model.timer.Timer;
 import main.model.timer.TimerImpl;
 import main.model.timer.TimerThread;

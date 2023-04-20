@@ -4,6 +4,7 @@ import main.common.P2d;
 import main.common.V2d;
 import main.model.WorldImpl;
 import main.model.gameObjects.bounding.RectBoundingBox;
+import main.model.gameObjects.power.TypePower;
 
 public class Brick extends GameObjectImpl<RectBoundingBox>{
 
