@@ -12,9 +12,9 @@ import main.controllers.state.event.WorldEventListener;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
-import main.model.gameObjects.PowerUp;
-import main.model.gameObjects.TypePower;
 import main.model.gameObjects.bounding.RectBoundingBox;
+import main.model.gameObjects.power.PowerUp;
+import main.model.gameObjects.power.TypePower;
 
 public class WorldImpl implements World {
 
@@ -141,6 +141,11 @@ public class WorldImpl implements World {
                 this.activePowerUps.remove(p);
             }
         }
+    }
+
+    @Override
+    public List<Ball> getBalls() {
+        return this.balls;
     }
 
 }
