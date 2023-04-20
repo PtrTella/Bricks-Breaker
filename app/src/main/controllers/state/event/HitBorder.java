@@ -23,7 +23,7 @@ public class HitBorder implements HitObjects {
         
         switch(this.side){
             case TOP:
-                ball.setPosition(new P2d(ball.getPosition().getX(), newPos - ball.getRadius()));
+                ball.setPosition(new P2d(ball.getPosition().getX(), newPos + ball.getRadius()));
                 ball.flipVelOnY();
                 break;
             case BOTTOM:
