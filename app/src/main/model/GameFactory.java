@@ -1,5 +1,11 @@
 package main.model;
 
+import java.util.List;
+
+import main.model.gameObjects.Ball;
+import main.model.gameObjects.Bar;
+import main.model.gameObjects.Brick;
+
 public class GameFactory {
     
     static private GameFactory instance;
@@ -11,11 +17,19 @@ public class GameFactory {
 		return instance;
 	}
 
-    //public GameObject createBall(){}
+    public Ball createBall(){
+		return null;
+	}
 
-    //public GameObject createBrick(){}
+	public List<Brick> createBricks(String nameMap){
+		return null;
+	}
 
-    //public GameObject createBar(){}
+    private Brick createBrick(){
+		return null;
+	}
 
-	//public GameObject createPowerUp(){}
+    public Bar createBar(){
+		return null;
+	}
 }
