@@ -1,14 +1,17 @@
 package main.controllers.state.event;
 
 import main.model.GameState;
-import main.model.gameObjects.PowerUp;
+import main.model.gameObjects.power.PowerUp;
+import main.model.gameObjects.power.applicator.PowerUpApplicator;
 
 public class HitPowerUp implements HitObjects{
 
+    private PowerUpApplicator applicator;
     private PowerUp picked;
 
-    public HitPowerUp(final PowerUp p) {
+    public HitPowerUp(final PowerUp p, final PowerUpApplicator a) {
         this.picked = p;
+        this.applicator = a;
     }
 
     public PowerUp getPickedPowerUp() {
@@ -17,7 +20,7 @@ public class HitPowerUp implements HitObjects{
 
     @Override
     public void process(final GameState currentGame) {
-        //TODO: applyPowerUp() method in GameState(?) -> need a timer check
+        this.applicator.applyPowerUp(currentGame.getWorld());
     }
     
 }
