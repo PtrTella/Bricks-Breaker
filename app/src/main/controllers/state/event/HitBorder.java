@@ -2,6 +2,7 @@ package main.controllers.state.event;
 
 import main.common.P2d;
 import main.model.GameState;
+import main.model.World;
 import main.model.WorldImpl.SideCollision;
 import main.model.gameObjects.Ball;
 
@@ -22,18 +23,22 @@ public class HitBorder implements HitObjects {
         
         switch(this.side){
             case TOP:
-                ball.setPosition(new P2d(ball.getPosition().getX(), newPos - ball.getBBox().getRad()));
+                ball.setPosition(new P2d(ball.getPosition().getX(), newPos + ball.getRadius()));
                 ball.flipVelOnY();
                 break;
             case BOTTOM:
-                currentGame.getWorld().removeBall(ball);
+                World w = currentGame.getWorld();
+                w.removeBall(ball);
+                if(w.getNumBalls() <= 0){
+                    w.getBar().decLife();
+                }
                 break;
             case LEFT:
-                ball.setPosition(new P2d(newPos + ball.getBBox().getRad(), ball.getPosition().getY()));
+                ball.setPosition(new P2d(newPos + ball.getRadius(), ball.getPosition().getY()));
                 ball.flipVelOnX();
                 break;
             case RIGHT:
-                ball.setPosition(new P2d(newPos - ball.getBBox().getRad(), ball.getPosition().getY()));
+                ball.setPosition(new P2d(newPos - ball.getRadius(), ball.getPosition().getY()));
                 ball.flipVelOnX();
                 break;
         }

@@ -2,15 +2,14 @@ package main.model.gameObjects;
 
 import main.common.*;
 import main.model.WorldImpl.TypeObj;
-import main.model.gameObjects.bounding.BoundingBox;
 
-public interface GameObject {
+public interface GameObject<T> {
 
+    int getLife();
+    
     void decLife();
 
     void incLife();
-
-    int getLife();
 
     TypeObj getType();
 
@@ -22,5 +21,5 @@ public interface GameObject {
 
     void setSpeed(final V2d speed);
 
-    BoundingBox getBBox();
+    T getBBox();
 }

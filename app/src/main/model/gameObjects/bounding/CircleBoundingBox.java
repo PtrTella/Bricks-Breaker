@@ -29,5 +29,10 @@ public class CircleBoundingBox implements BoundingBox{
     public void setRadius(Double radius) {
         this.radius = radius;
     }
+
+    @Override
+    public boolean isCollidingWith(BoundingBox obj) {
+        return false;
+    }
     
 }

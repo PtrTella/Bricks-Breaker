@@ -1,8 +1,7 @@
 package main.model;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import main.controllers.state.event.HitBrick;
 import main.common.P2d;
@@ -19,8 +18,8 @@ import main.model.gameObjects.bounding.RectBoundingBox;
 
 public class WorldImpl implements World {
 
-    public enum SideCollision { TOP, BOTTOM, LEFT, RIGHT };
     public static enum TypeObj { BALL, BRICK, BAR, POWERUP }
+    public enum SideCollision { TOP, BOTTOM, LEFT, RIGHT }
 
     private List<Ball> balls;
     private Bar bar;
@@ -29,25 +28,12 @@ public class WorldImpl implements World {
     private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 
-    public WorldImpl(final RectBoundingBox bbox, final Ball ballToSet, 
-                    final Bar barToSet, final List<Brick> bricks, final List<TypePower> powerUps) {
-        this.balls.add(ballToSet);
-        this.bar = barToSet;
-        this.bricks.addAll(bricks);
-        randomPowerUpAssignament(bricks, powerUps);
-        this.mainBBox = bbox;
-    }
-
-    // adding TypePower randomly to bricks
-    private void randomPowerUpAssignament(List<Brick> b, List<TypePower> p){
-        Integer diff = b.size() - p.size();
-        Random random = new Random();
-        if(diff > 0){
-            p.addAll(Collections.nCopies(diff, TypePower.NULL));
-        }
-        for(Brick brick : b){
-            brick.setPowerUp(p.remove(random.nextInt(p.size())));
-        }
+    // TODO add obj nel gameState
+    public WorldImpl(final RectBoundingBox mainBbox) {
+        this.balls = new ArrayList<>();
+        this.bricks = new ArrayList<>();
+        this.activePowerUps = new ArrayList<>();
+        this.mainBBox = mainBbox;
     }
 
     @Override
@@ -63,7 +49,6 @@ public class WorldImpl implements World {
     @Override
     public void removeBall(Ball ball) {
         this.balls.remove(ball);
-        //return this.balls.size();
     }
 
     @Override
@@ -77,18 +62,26 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void removeBrick(Brick brick){
-        this.bricks.remove(brick);
-        if(brick.getPowerUp() != TypePower.NULL){
-            // TODO choose width and height of power up
-            this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), 1.0, 1.0, brick.getPowerUp()));
-        }
-        //return this.bricks.size();
+    public void setBar(Bar bar){
+        this.bar = bar;
     }
 
     @Override
-    public Integer getNumBricks(){
-        return this.bricks.size();
+    public void addBricks(List<Brick> bricks){
+        this.bricks.addAll(bricks);
+    }
+
+    @Override
+    public void removeBrick(Brick brick){
+        if(brick.getPowerUp() != TypePower.NULL){
+            this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), brick.getPowerUp()));
+        }
+        this.bricks.remove(brick);
+    }
+
+    @Override
+    public List<Brick> getBricks(){
+        return this.bricks;
     }
 
     @Override
@@ -115,9 +108,9 @@ public class WorldImpl implements World {
             P2d pos = ball.getPosition();
             Double r = ball.getRadius();
             
-            if(pos.getY() + r > ul.getY()){
+            if(pos.getY() - r < ul.getY()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.TOP, ul.getY()));      //TOP-BORDER
-            } else if(pos.getY() - r < br.getY()){
+            } else if(pos.getY() + r > br.getY()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.BOTTOM, br.getY()));   //BOTTOM-BORDER
             } else if(pos.getX() - r < ul.getX()){
                 this.evListener.notifyEvent(new HitBorder(ball, SideCollision.LEFT, ul.getX()));     //LEFT-BORDER
@@ -141,7 +134,7 @@ public class WorldImpl implements World {
     private void checkCollisionWithPowerUp(){
         for(PowerUp p : this.activePowerUps){
             
-            if(p.getPosition().getY() - p.getBBox().getHeight()/2 < mainBBox.getBRCorner().getY()){
+            if(p.getPosition().getY() - p.getHeight()/2 < mainBBox.getBRCorner().getY()){
                 this.activePowerUps.remove(p);
             }else if(p.getBBox().isCollidingWith(bar.getBBox())){
                 this.evListener.notifyEvent(new HitPowerUp(p));
