@@ -3,6 +3,9 @@ package main.model;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
+
+import java.util.List;
+
 import main.controllers.state.event.WorldEventListener;
 
 public interface World {
@@ -13,10 +16,12 @@ public interface World {
     void removeBall(Ball ball);
     Integer getNumBalls(); // returns the number of balls
 
-    Bar getBar();   // only get because set in constructor
+    Bar getBar();
+    void setBar(Bar bar);
 
+    void addBricks(List<Brick> bricks);
     void removeBrick(Brick brick);   // create a power Up in its place
-    Integer getNumBricks(); // returns the number of bricks
+    List<Brick> getBricks(); // returns a list of bricks
 
     void updateGame(final int elapsed);
 

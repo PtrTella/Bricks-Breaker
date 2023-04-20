@@ -13,7 +13,7 @@ public interface GameState {
     /**
      * Initialize the game world and data.
      */
-    void init();
+    void init(String nameMap, Integer level);
 
     /**
      * This method returns the current game world.

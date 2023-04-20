@@ -1,9 +1,7 @@
 package main.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import main.controllers.state.event.HitBrick;
 import main.common.P2d;
@@ -30,28 +28,12 @@ public class WorldImpl implements World {
     private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 
-    public WorldImpl(final RectBoundingBox bbox, final Ball ballToSet, 
-                    final Bar barToSet, final List<Brick> bricks, final List<TypePower> powerUps) {
+    // TODO add obj nel gameState
+    public WorldImpl(final RectBoundingBox mainBbox) {
         this.balls = new ArrayList<>();
-        this.balls.add(ballToSet);  // the game start always with a single ball
-        this.bar = barToSet;
         this.bricks = new ArrayList<>();
-        this.bricks.addAll(bricks);
-        randomPowerUpAssignament(bricks, powerUps);
         this.activePowerUps = new ArrayList<>();
-        this.mainBBox = bbox;
-    }
-
-    // adding TypePower randomly to bricks
-    private void randomPowerUpAssignament(List<Brick> b, List<TypePower> p){
-        Integer diff = b.size() - p.size();
-        Random random = new Random();
-        if(diff > 0){
-            p.addAll(Collections.nCopies(diff, TypePower.NULL));
-        }
-        for(Brick brick : b){
-            brick.setPowerUp(p.remove(random.nextInt(p.size())));
-        }
+        this.mainBBox = mainBbox;
     }
 
     @Override
@@ -80,6 +62,16 @@ public class WorldImpl implements World {
     }
 
     @Override
+    public void setBar(Bar bar){
+        this.bar = bar;
+    }
+
+    @Override
+    public void addBricks(List<Brick> bricks){
+        this.bricks.addAll(bricks);
+    }
+
+    @Override
     public void removeBrick(Brick brick){
         if(brick.getPowerUp() != TypePower.NULL){
             this.activePowerUps.add(new PowerUp(brick.getBBox().getP2d(), brick.getPowerUp()));
@@ -88,8 +80,8 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public Integer getNumBricks(){
-        return this.bricks.size();
+    public List<Brick> getBricks(){
+        return this.bricks;
     }
 
     @Override
@@ -101,7 +93,6 @@ public class WorldImpl implements World {
     public void checkCollision() {
         checkCollisionWithBall();
         checkCollisionWithPowerUp();
-        //evListener.processAll();
     }
     
     /*
