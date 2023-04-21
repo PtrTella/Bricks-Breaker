@@ -8,6 +8,8 @@ import main.common.P2d;
 import main.model.gameObjects.Brick;
 import main.model.gameObjects.bounding.RectBoundingBox;
 import main.model.gameObjects.power.TypePower;
+import main.model.map.GameMap;
+import main.model.map.GameMapImpl;
 import main.model.timer.Timer;
 import main.model.timer.TimerImpl;
 import main.model.timer.TimerThread;
@@ -19,6 +21,8 @@ import main.model.timer.TimerThread;
 public class GameStateImpl implements GameState {
 
     private static final Integer TIME = 300;
+    private static final Integer MAPCOL = 20;
+    private static final Integer MAPLINE = 10;
     public static enum State { PLAYING, WIN, LOST}
 
     private World currentWorld;
@@ -34,12 +38,13 @@ public class GameStateImpl implements GameState {
     public final void init(String nameMap, Integer level) {
 
         GameFactory f = GameFactory.getInstance();
+        GameMap map = GameMapImpl.getInstance();
 		score = 0;
 
         this.currentWorld = new WorldImpl(new RectBoundingBox(new P2d(4, 3), 8.0, 6.0));
-        currentWorld.setBar(f.createBar());
-        currentWorld.addBall(f.createBall());
-        currentWorld.addBricks(f.createBricks(nameMap));
+        currentWorld.setBar(f.createBar(null, null));
+        currentWorld.addBall(f.createBall(null, null));
+        currentWorld.addBricks(f.createBricks(map.LoadMap(nameMap),MAPCOL,MAPLINE));
         randomPowerUpAssignament(currentWorld.getBricks(), getWorldPowerUp(level));
         this.gameTimer = new TimerImpl(GameStateImpl.TIME);
         this.gameTimerThread = new TimerThread(this.gameTimer);
@@ -58,6 +63,7 @@ public class GameStateImpl implements GameState {
         }
     }
 
+    // TODO implement method
     private List<TypePower> getWorldPowerUp(Integer level){
         return null;
     }
