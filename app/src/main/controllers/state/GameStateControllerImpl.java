@@ -80,7 +80,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     public void init() {
         this.eventListener = new WorldEventListenerImpl();
         this.eventListener.setGameState(getModel());
-        this.getModel().init();
+        this.getModel().init(null, null);   // TODO Add argoments
         this.getModel().getWorld().setEventListener(this.eventListener);
         this.game = new Thread(this);
         this.game.setName("GameLoop");
