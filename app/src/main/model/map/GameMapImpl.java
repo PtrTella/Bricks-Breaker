@@ -9,15 +9,19 @@ import java.util.Scanner;
 
 public class GameMapImpl implements GameMap {
     
-    // TODO change lineBrick and brickInLine when implementing views
-    private final Integer LINEMAP = 4;
-    private final Integer COLUMNMAP = 6;
-
+    static private GameMapImpl instance;
     private final String sep;
     private final String path;
     
     private List<Integer> currentMap;
     private String mapName;
+
+    static public GameMapImpl getInstance(){
+		if (instance == null){
+			instance = new GameMapImpl();
+		}
+		return instance;
+	}
 
     public GameMapImpl(){
         this.currentMap = new ArrayList<Integer>();
@@ -44,22 +48,10 @@ public class GameMapImpl implements GameMap {
             } catch (FileNotFoundException e) {
                 this.mapName = "";
                 e.printStackTrace();
-            }
-            if( (currentMap.size() % (LINEMAP*COLUMNMAP)) != 0 ){
                 return List.of();
             }
         }
         return this.currentMap;
-    }
-
-    @Override
-    public Integer getLineMap() {
-        return this.LINEMAP;
-    }
-
-    @Override
-    public Integer getColumnMap() {
-        return this.COLUMNMAP;
     }
 
 }
