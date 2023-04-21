@@ -28,6 +28,10 @@ public class RectBoundingBox implements BoundingBox{
         return this.width;
     }
 
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
     public Double getHeight(){
         return this.height;
     }
