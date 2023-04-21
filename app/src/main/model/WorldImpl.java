@@ -52,8 +52,8 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public Integer getNumBalls(){
-        return this.balls.size();
+    public List<Ball> getBalls() {
+        return this.balls;
     }
 
     @Override
@@ -141,11 +141,6 @@ public class WorldImpl implements World {
                 this.activePowerUps.remove(p);
             }
         }
-    }
-
-    @Override
-    public List<Ball> getBalls() {
-        return this.balls;
     }
 
 }

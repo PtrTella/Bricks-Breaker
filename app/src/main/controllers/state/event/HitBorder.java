@@ -29,7 +29,7 @@ public class HitBorder implements HitObjects {
             case BOTTOM:
                 World w = currentGame.getWorld();
                 w.removeBall(ball);
-                if(w.getNumBalls() <= 0){
+                if(w.getBalls().size() <= 0){
                     w.getBar().decLife();
                 }
                 break;

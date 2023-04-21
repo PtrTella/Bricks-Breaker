@@ -14,7 +14,6 @@ public interface World {
 
     void addBall(Ball ball);    // in addition to the first one created in the constructor
     void removeBall(Ball ball);
-    Integer getNumBalls(); // returns the number of balls
     List<Ball> getBalls();
 
     Bar getBar();
