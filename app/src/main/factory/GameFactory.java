@@ -1,4 +1,4 @@
-package main.model;
+package main.factory;
 
 import java.util.List;
 

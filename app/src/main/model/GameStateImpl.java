@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import main.common.P2d;
+import main.factory.GameFactory;
 import main.model.gameObjects.Brick;
 import main.model.gameObjects.bounding.RectBoundingBox;
 import main.model.gameObjects.power.TypePower;
