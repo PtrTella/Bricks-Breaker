@@ -9,12 +9,14 @@ import main.controllers.state.event.HitBar;
 import main.controllers.state.event.HitBorder;
 import main.controllers.state.event.HitPowerUp;
 import main.controllers.state.event.WorldEventListener;
+import main.factory.ApplicatorFactory;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
 import main.model.gameObjects.bounding.RectBoundingBox;
 import main.model.gameObjects.power.PowerUp;
 import main.model.gameObjects.power.TypePower;
+import main.model.gameObjects.power.applicator.PowerUpApplicator;
 
 public class WorldImpl implements World {
 
@@ -130,6 +132,7 @@ public class WorldImpl implements World {
     
     /*
      * Power up collision with bar
+     * TODO: Look at the changes.
      */
     private void checkCollisionWithPowerUp(){
         for(PowerUp p : this.activePowerUps){
@@ -137,7 +140,9 @@ public class WorldImpl implements World {
             if(p.getPosition().getY() - p.getHeight()/2 < mainBBox.getBRCorner().getY()){
                 this.activePowerUps.remove(p);
             }else if(p.getBBox().isCollidingWith(bar.getBBox())){
-                this.evListener.notifyEvent(new HitPowerUp(p));
+                //here.
+                PowerUpApplicator a = ApplicatorFactory.getInstance().createApplicator(p.getPowerUp());
+                this.evListener.notifyEvent(new HitPowerUp(p, a));
                 this.activePowerUps.remove(p);
             }
         }
