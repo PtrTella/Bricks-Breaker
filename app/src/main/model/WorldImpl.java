@@ -30,7 +30,6 @@ public class WorldImpl implements World {
     private RectBoundingBox mainBBox;
 	private WorldEventListener evListener;
 
-    // TODO add obj nel gameState
     public WorldImpl(final RectBoundingBox mainBbox) {
         this.balls = new ArrayList<>();
         this.bricks = new ArrayList<>();
