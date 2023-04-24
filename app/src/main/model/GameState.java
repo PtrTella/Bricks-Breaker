@@ -1,5 +1,7 @@
 package main.model;
 
+import java.util.List;
+
 import main.model.GameStateImpl.State;
 import main.model.timer.Timer;
 import main.model.timer.TimerThread;
@@ -69,4 +71,9 @@ public interface GameState {
      * @return a Timer object which is the current game timer, that contains the remaining time.
      */
     Timer getGameTimer();
+
+    /**
+     * @return a list of maps file names 
+     */
+    List<String> getNamesMap();
 }

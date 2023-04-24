@@ -1,5 +1,7 @@
 package main.model;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -9,8 +11,6 @@ import main.model.factory.GameFactory;
 import main.model.gameObjects.Brick;
 import main.model.gameObjects.bounding.RectBoundingBox;
 import main.model.gameObjects.power.TypePower;
-import main.model.map.GameMap;
-import main.model.map.GameMapImpl;
 import main.model.timer.Timer;
 import main.model.timer.TimerImpl;
 import main.model.timer.TimerThread;
@@ -27,6 +27,7 @@ public class GameStateImpl implements GameState {
     public static enum State { PLAYING, WIN, LOST}
 
     private World currentWorld;
+    private GameMap map = new GameMap();
     private Integer score;
     private State state;
     private Timer gameTimer;
@@ -39,7 +40,6 @@ public class GameStateImpl implements GameState {
     public final void init(String nameMap, Integer level) {
 
         GameFactory f = GameFactory.getInstance();
-        GameMap map = GameMapImpl.getInstance();
 		score = 0;
 
         this.currentWorld = new WorldImpl(new RectBoundingBox(new P2d(4, 3), 8.0, 6.0));
@@ -130,14 +130,28 @@ public class GameStateImpl implements GameState {
         return this.state;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public TimerThread getGameTimerThread() {
         return this.gameTimerThread;
     }
 
+    /**
+     * {@inheritDoc}}
+     */
     @Override
     public Timer getGameTimer() {
         return this.gameTimer;
+    }
+
+    /**
+     * {@inheritDoc}}
+     */
+    @Override
+    public List<String> getNamesMap() {
+        return Arrays.asList(new File(map.getPathMapFile()).list());
     }
      
 }

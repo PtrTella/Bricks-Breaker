@@ -1,42 +1,40 @@
-package main.model.map;
+package main.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class GameMapImpl implements GameMap {
+public class GameMap {
     
-    static private GameMapImpl instance;
     private final String sep;
     private final String path;
     
     private List<Integer> currentMap;
     private String mapName;
 
-    static public GameMapImpl getInstance(){
-		if (instance == null){
-			instance = new GameMapImpl();
-		}
-		return instance;
-	}
-
-    public GameMapImpl(){
+    protected GameMap(){
         this.currentMap = new ArrayList<Integer>();
         this.mapName = "";
         this.sep = File.separator + File.separator;
         this.path ="." + sep + "app" + sep + "src" + sep + "main" + sep + "resources" + sep + "mapsFile";
     }
 
-    @Override
-    public List<String> getNamesMap() {
-        return Arrays.asList(new File(path).list());
+    /**
+     *  @return the directory path of maps files
+     */
+    protected String getPathMapFile() {
+        return this.path;
     }
 
-    @Override
-    public List<Integer> LoadMap(String fileName) {
+    /**
+     *  Retunr the game map request, if new: load the new map, else return the same in memory.
+     *  If name map is absent catch exception and return an empty list.
+     *  If size map is not correct return an empty list
+     *  @return a list of bricks num life
+     */
+    protected List<Integer> LoadMap(String fileName) {
         if(!this.mapName.equals(fileName)){
             currentMap.clear();
             try (Scanner sc = new Scanner(new File(path + sep + fileName))) {
