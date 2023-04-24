@@ -14,9 +14,6 @@ public interface GameMap {
      */
     List<Integer> LoadMap(String name);
 
-    Integer getLineMap();
-    Integer getColumnMap();
-
     //boolean addMap();
 
     //boolean removeMap();
