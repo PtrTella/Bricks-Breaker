@@ -9,7 +9,7 @@ import main.controllers.state.event.HitBar;
 import main.controllers.state.event.HitBorder;
 import main.controllers.state.event.HitPowerUp;
 import main.controllers.state.event.WorldEventListener;
-import main.factory.ApplicatorFactory;
+import main.model.factory.ApplicatorFactory;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
