@@ -3,24 +3,20 @@ package main.model.gameObjects.power;
 import java.util.List;
 import java.util.stream.Stream;
 
-import main.model.WorldImpl.TypeObj;
-
 public enum TypePower {
     
-    NULL(0.0,"NULL", TypeObj.POWERUP),
-    SLOWBALL(10.0,"POSITIVE", TypeObj.BALL),
-    FASTBALL(10.0,"NEGATIVE", TypeObj.BALL),
-    LONGBAR(10.0,"POSITIVE", TypeObj.BAR),
-    SHORTBAR(10.0,"NEGATIVE", TypeObj.BAR);
+    NULL(0.0,"NULL"),
+    SLOWBALL(10.0,"POSITIVE"),
+    FASTBALL(10.0,"NEGATIVE"),
+    LONGBAR(10.0,"POSITIVE"),
+    SHORTBAR(10.0,"NEGATIVE");
 
     public final Double timeAmount;
     public final String type;
-    public final TypeObj affectedType;
 
-    private TypePower(final Double time, final String typePower, final TypeObj affType) {
+    private TypePower(final Double time, final String typePower) {
         this.timeAmount = time;
         this.type = typePower;
-        this.affectedType = affType;
     }
 
     public static List<TypePower> getElement(String type){
