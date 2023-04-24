@@ -10,10 +10,11 @@ public class PowerUp extends GameObjectImpl<RectBoundingBox>{
     
     private final static Double POWERUP_WIDTH = 1.5;
     private final static Double POWERUP_HEIGHT = 0.8;
+    private final static Double POWERUP_FALLING = -5.0; //TODO: adapt falling speed
     private final TypePower powerUp;
 
     public PowerUp(final P2d pos, final TypePower powerToSet) {
-        super(1,new V2d(0, -5), WorldImpl.TypeObj.POWERUP, new RectBoundingBox(pos,POWERUP_WIDTH,POWERUP_HEIGHT));     //TODO: adapt falling speed
+        super(1,new V2d(0, POWERUP_FALLING), WorldImpl.TypeObj.POWERUP, new RectBoundingBox(pos,POWERUP_WIDTH,POWERUP_HEIGHT));
         this.powerUp = powerToSet;
     }
 
