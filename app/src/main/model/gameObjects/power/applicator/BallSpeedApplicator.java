@@ -3,12 +3,12 @@ package main.model.gameObjects.power.applicator;
 import main.common.V2d;
 import main.model.World;
 
-public final class SpeedBallApplicator implements PowerUpApplicator {
+public final class BallSpeedApplicator implements PowerUpApplicator {
 
     private final static Double DELTA = 2.0;
     private boolean bonus;
 
-    public SpeedBallApplicator(final boolean bonusToSet) {
+    public BallSpeedApplicator(final boolean bonusToSet) {
         this.bonus = bonusToSet;
     }
 
