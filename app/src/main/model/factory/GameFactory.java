@@ -26,13 +26,17 @@ public class GameFactory {
 
 	public List<Brick> createBricks(List<Integer> list, Integer col, Integer line){
 		List<Brick> result = new ArrayList<>();
+		Integer life;
 		try {
 			for( int y = 0; y < line; y++){
 				for( int x = 0; x < col; x++){
-					result.add(new Brick(new P2d(x+1, y+1), list.get(x+y*col)));
+					if((life = list.get(x+y*col)) > 0 ){
+						result.add(new Brick(new P2d(x, y), life));	// <- new P2d(x+space, y+space)
+					}
 				}
 			}
 		} catch (Exception e) {
+			System.out.println("Size of map not correct");
 			e.printStackTrace();
 		}
 		return result;
