@@ -28,16 +28,18 @@ public class HitBrick implements HitObjects {
         P2d bpoint = ball.getPosition();
 
         if( ul.getY() > bpoint.getY() ){
-            if( (ul.getX() > bpoint.getX() && ul.vertDist(bpoint.getY()) < ul.orizDist(bpoint.getX())) ||
-                (br.getX() < bpoint.getX() && ul.vertDist(bpoint.getY()) < br.orizDist(bpoint.getX()))
+            Double uly = Math.abs(ul.vertDist(bpoint));
+            if( (ul.getX() > bpoint.getX() && uly < Math.abs(ul.orizDist(bpoint))) ||
+                (br.getX() < bpoint.getX() && uly < Math.abs(br.orizDist(bpoint)))
             ){
                 ball.flipVelOnX();
             }else{
                 ball.flipVelOnY();
             }
         }else if( br.getY() < bpoint.getY() ){
-            if( (ul.getX() > bpoint.getX() && br.vertDist(bpoint.getY()) < ul.orizDist(bpoint.getX())) ||
-                (br.getX() < bpoint.getX() && br.vertDist(bpoint.getY()) < br.orizDist(bpoint.getX()))
+            Double bry = Math.abs(br.vertDist(bpoint));
+            if( (ul.getX() > bpoint.getX() && bry < Math.abs(ul.orizDist(bpoint))) ||
+                (br.getX() < bpoint.getX() && bry < Math.abs(br.orizDist(bpoint)))
             ){
                 ball.flipVelOnX();
             }else{

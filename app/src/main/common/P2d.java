@@ -34,12 +34,12 @@ public class P2d implements java.io.Serializable {
         return "P2d("+x+","+y+")";
     }
     
-    public Double orizDist(double xp){
-        return Math.sqrt(Math.pow(x-xp, 2));
+    public Double orizDist(P2d xp){
+        return x-xp.getX();
     }
 
-    public Double vertDist(double yp){
-        return Math.sqrt(Math.pow(y-yp, 2));
+    public Double vertDist(P2d yp){
+        return y-yp.getY();
     }
 
 }
