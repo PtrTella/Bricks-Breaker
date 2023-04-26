@@ -43,7 +43,7 @@ public class GameStateImpl implements GameState {
 		score = 0;
 
         this.currentWorld = new WorldImpl(new RectBoundingBox(new P2d(4, 3), 8.0, 6.0));
-        currentWorld.setBar(f.createBar(null, null));
+        currentWorld.setBar(f.createBar(null));
         currentWorld.addBall(f.createBall(null, null));
         currentWorld.addBricks(f.createBricks(map.LoadMap(nameMap),MAPCOL,MAPLINE));
         randomPowerUpAssignament(currentWorld.getBricks(), getWorldPowerUp(level));
