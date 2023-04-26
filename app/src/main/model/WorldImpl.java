@@ -87,7 +87,7 @@ public class WorldImpl implements World {
 
     @Override
     public void updateGame(final int elapsed) {
-        //TODO: Check if the update loop is useless.
+        balls.stream().forEach(t -> t.setPosition(t.getPosition().sum(t.getSpeed().mul(0.001*elapsed))));
     }
 
     @Override
