@@ -1,7 +1,9 @@
 package main.controllers.state.event;
 
+import main.common.V2d;
 import main.model.GameState;
 import main.model.gameObjects.Ball;
+import main.model.gameObjects.Bar;
 
 public class HitBar implements HitObjects {
 
@@ -13,7 +15,13 @@ public class HitBar implements HitObjects {
 
     @Override
     public void process(GameState currentGame) {
-        // TODO invert vel y of ball and set a new vel x in proportion to the distance between the two centres
+        Bar bar = currentGame.getWorld().getBar();
+        
+        if(bar.getBBox().getULCorner().getY() > ball.getPosition().getY()){
+            ball.flipVelOnY();
+            ball.setSpeed(new V2d(bar.getPosition().orizDist(ball.getPosition()), ball.getSpeed().getY()));
+        }
+        
     }
     
 }
