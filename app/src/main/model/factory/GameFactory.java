@@ -20,6 +20,8 @@ public class GameFactory {
 		return instance;
 	}
 
+	// TODO change posToSet with fixed position at start
+
     public Ball createBall(P2d posToSet, V2d velToSet){
 		return new Ball(posToSet, velToSet);
 	}
@@ -31,7 +33,7 @@ public class GameFactory {
 			for( int y = 0; y < line; y++){
 				for( int x = 0; x < col; x++){
 					if((life = list.get(x+y*col)) > 0 ){
-						result.add(new Brick(new P2d(x, y), life));	// <- new P2d(x+space, y+space)
+						result.add(new Brick(new P2d(x, y), life));	// <- new P2d(x+spaceLeft, y+spaceTop)
 					}
 				}
 			}
@@ -42,7 +44,7 @@ public class GameFactory {
 		return result;
 	}
 
-    public Bar createBar(P2d posToSet, V2d velToSet){
-		return new Bar(posToSet, velToSet, 1);
+    public Bar createBar(P2d posToSet){
+		return new Bar(posToSet, 1);
 	}
 }
