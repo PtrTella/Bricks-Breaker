@@ -15,45 +15,10 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     private Thread game;
 
     public GameStateControllerImpl() {
-        super();
         this.pause = false;
         this.quit = false;
-    }
-
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public void processCommands() {
-
-    }
-
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public void processEvents() {
-        this.eventListener.processAll();
-    }
-
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public void render() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'render'");
-    }
-
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public void updateGame(final int elapsed) {
-        this.getModel().updateGame(elapsed);
-        this.processEvents();
-        this.getModel().getWorld().checkCollision();
-        this.processEvents();
+        this.game = new Thread(this);
+        this.game.setName("GameLoop");
     }
 
     /**
@@ -62,6 +27,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     @Override
     public void quitGame() {
         //this.getModel().setGameOver(true);
+        this.getModel().getGameTimerThread().stopTimer();
         this.quit = true;
     }
 
@@ -82,8 +48,6 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
         this.eventListener.setGameState(getModel());
         this.getModel().init(null, null);   // TODO Add argoments
         this.getModel().getWorld().setEventListener(this.eventListener);
-        this.game = new Thread(this);
-        this.game.setName("GameLoop");
         this.game.start();
         this.getModel().getGameTimerThread().start();
     }
@@ -100,25 +64,94 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     public void run() {
         long last = System.currentTimeMillis();
 
-        while(this.getModel().getState() == State.PLAYING) {
-            long current = System.currentTimeMillis();
-            int elapsed = (int) (current - last);
-            this.processCommands();
-            this.updateGame(elapsed);
-            this.render();
-            this.waitUntilNextFrame(current);
-            last = current;
+        while(!quit){
+            
+            while(this.getModel().getState() == State.PLAYING && !this.pause) {
+                long current = System.currentTimeMillis();
+                int elapsed = (int) (current - last);
+                this.processCommands();
+                this.updateGame(elapsed);
+                this.render();
+                this.waitUntilNextFrame(current);
+                last = current;
+            }
+    
+            if(this.getModel().getState() == State.WIN){
+                this.quitGame();
+                //TODO: Add the user to a rank.
+            }else if(this.getModel().getState() == State.LOST){
+                this.quitGame();
+                
+            }else if(this.pause){
+                // TODO when you need to stop the timer also in pause ??
+    
+                synchronized(game){
+                    try {
+                        System.out.println("Game in pause...");
+                        this.game.wait();
+                        System.out.println("Resume game event...");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                /*to restart the thread
+                try {
+                    Thread.sleep(5000);
+        
+                    synchronized(game) {
+                        this.game.notify(); //invia la notifica al thread in attesa
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                */
+            }
+
         }
-
-        this.getModel().getGameTimerThread().stopTimer();
-        if(this.getModel().getState() == State.WIN){
-            //TODO: Add the user to a rank.
-        }else if(this.getModel().getState() == State.LOST){
-
+        
+        try {
+            this.game.interrupt();
+            throw new InterruptedException();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    public void waitUntilNextFrame(final long currentFrame) {
+    /**
+     * This method processes all the commands triggered by the user.
+     */
+    private void processCommands() {}
+
+    /**
+     * This method updates the current Game.
+     * @param elapsed
+     */
+    private void updateGame(final int elapsed) {
+        this.getModel().updateGame(elapsed);
+        this.processEvents();
+        this.getModel().getWorld().checkCollision();
+        this.processEvents();
+        // PERCHE SI RICHIAMA DUE VOLTE IL PROCESSEVENT
+    }
+
+    /**
+     * This method processes all the world events.
+     */
+    void processEvents(){
+        this.eventListener.processAll();
+    }
+
+    /**
+     * This method renders the attached view.
+     */
+    private void render() {}
+
+    /**
+     * This method wait end of the frame time before strting a new cicle.
+     * @param currentFrame
+     */
+    private void waitUntilNextFrame(final long currentFrame) {
         long dt = System.currentTimeMillis() - currentFrame;
         if (dt < GameStateControllerImpl.PERIOD) {
             try {

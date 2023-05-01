@@ -8,27 +8,6 @@ import main.controllers.Controller;
 public interface GameStateController extends Controller {
 
     /**
-     * This method processes all the commands triggered by the user.
-     */
-    void processCommands();
-
-    /**
-     * This method processes all the world events.
-     */
-    void processEvents();
-
-    /**
-     * This method renders the attached view.
-     */
-    void render();
-
-    /**
-     * This method updates the current Game.
-     * @param elapsed
-     */
-    void updateGame(final int elapsed);
-
-    /**
      * This method closes the game.
      */
     void quitGame();
