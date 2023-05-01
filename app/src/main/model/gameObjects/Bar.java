@@ -20,4 +20,8 @@ public class Bar extends GameObjectImpl<RectBoundingBox>{
     public void setWidth(final Double widthToSet) {
         this.getBBox().setWidth(widthToSet);
     }
+
+    public void move(Integer m){
+        this.setPosition(new P2d(this.getPosition().getX()+m, this.getPosition().getY()));
+    }
 }
