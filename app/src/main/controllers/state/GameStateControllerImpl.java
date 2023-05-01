@@ -1,6 +1,7 @@
 package main.controllers.state;
 
 import main.controllers.ControllerImpl;
+import main.controllers.input.InputController;
 import main.controllers.state.event.WorldEventListener;
 import main.controllers.state.event.WorldEventListenerImpl;
 import main.model.GameStateImpl.State;
@@ -10,6 +11,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     private static final double PERIOD = 16.6666;
 
     private WorldEventListener eventListener;
+    private InputController inputController;
     private boolean pause;
     private boolean quit;
     private Thread game;
@@ -121,7 +123,9 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
     /**
      * This method processes all the commands triggered by the user.
      */
-    private void processCommands() {}
+    private void processCommands() {
+        this.getModel().getWorld().getBar().updateInput(inputController);
+    }
 
     /**
      * This method updates the current Game.
