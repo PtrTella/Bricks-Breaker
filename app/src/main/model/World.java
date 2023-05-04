@@ -3,6 +3,7 @@ package main.model;
 import main.model.gameObjects.Ball;
 import main.model.gameObjects.Bar;
 import main.model.gameObjects.Brick;
+import main.model.gameObjects.bounding.RectBoundingBox;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface World {
     void addBricks(List<Brick> bricks);
     void removeBrick(Brick brick);   // create a power Up in its place
     List<Brick> getBricks(); // returns a list of bricks
+
+    RectBoundingBox getMainBBox();
 
     void updateGame(final int elapsed);
 
