@@ -22,8 +22,6 @@ import main.model.timer.TimerThread;
 public class GameStateImpl implements GameState {
 
     private static final Integer TIME = 300;
-    private static final Integer MAPCOL = 20;
-    private static final Integer MAPLINE = 10;
     public static enum State { PLAYING, WIN, LOST}
 
     private World currentWorld;
@@ -38,35 +36,11 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public final void init(String nameMap, Integer level) {
-
-        GameFactory f = GameFactory.getInstance();
+        
 		score = 0;
-
-        this.currentWorld = new WorldImpl(new RectBoundingBox(new P2d(4, 3), 8.0, 6.0));
-        currentWorld.setBar(f.createBar(null));
-        currentWorld.addBall(f.createBall(null, null));
-        currentWorld.addBricks(f.createBricks(map.LoadMap(nameMap),MAPCOL,MAPLINE));
-        randomPowerUpAssignament(currentWorld.getBricks(), getWorldPowerUp(level));
         this.gameTimer = new TimerImpl(GameStateImpl.TIME);
         this.gameTimerThread = new TimerThread(this.gameTimer);
         this.state = State.PLAYING;
-    }
-
-    // adding TypePower randomly to bricks
-    private void randomPowerUpAssignament(List<Brick> b, List<TypePower> p){
-        Integer diff = b.size() - p.size();
-        Random random = new Random();
-        if(diff > 0){
-            p.addAll(Collections.nCopies(diff, TypePower.NULL));
-        }
-        for(Brick brick : b){
-            brick.setPowerUp(p.remove(random.nextInt(p.size())));
-        }
-    }
-
-    // TODO implement method
-    private List<TypePower> getWorldPowerUp(Integer level){
-        return null;
     }
 
     /**
