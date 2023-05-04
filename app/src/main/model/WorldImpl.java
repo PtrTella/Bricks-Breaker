@@ -2,7 +2,6 @@ package main.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import main.controllers.state.event.HitBrick;
 import main.common.P2d;
 import main.controllers.state.event.HitBar;
