@@ -7,12 +7,16 @@ public class PlayerInput implements InputComponent{
     private final Integer MOVE = 1;
 
     @Override
-    public void update(Bar bar, InputController c) {
+    public void update(Bar bar, Double rb, InputController c) {
         if(c.isMoveLeft()){
-            bar.move(-MOVE);
+            if(bar.getBBox().getULCorner().getX() > 0){
+                bar.move(-MOVE);
+            }
             c.noMoveLeft();
         }else if(c.isMoveRight()){
-            bar.move(MOVE);
+            if(bar.getBBox().getBRCorner().getX() < rb){
+                bar.move(MOVE);
+            }
             c.noMoveRight();
         }
     }

@@ -124,7 +124,7 @@ public class GameStateControllerImpl extends ControllerImpl implements GameState
      * This method processes all the commands triggered by the user.
      */
     private void processCommands() {
-        this.getModel().getWorld().getBar().updateInput(inputController);
+        this.getModel().getWorld().getBar().updateInput(inputController, this.getModel().getWorld().getMainBBox().getBRCorner().getX());
     }
 
     /**

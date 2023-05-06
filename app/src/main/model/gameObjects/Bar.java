@@ -28,7 +28,7 @@ public class Bar extends GameObjectImpl<RectBoundingBox>{
         this.setPosition(new P2d(this.getPosition().getX()+m, this.getPosition().getY()));
     }
 
-    public void updateInput(InputController c){
-		input.update(this, c);
+    public void updateInput(InputController c, Double rightBorder){
+		input.update(this, rightBorder, c);
 	}
 }
