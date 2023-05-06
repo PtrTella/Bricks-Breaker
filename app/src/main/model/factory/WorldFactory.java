@@ -15,8 +15,6 @@ import main.model.gameObjects.power.TypePower;
 
 public class WorldFactory {
 
-    private static final Integer X_WORLD = 4;
-    private static final Integer Y_WORLD = 3;
     private static final Double WORLD_WIDTH = 8.0;
     private static final Double WORLD_HEIGHT = 6.0;
 
@@ -38,7 +36,7 @@ public class WorldFactory {
 
         GameMap map = new GameMap();
         GameFactory f = new GameFactory();
-        RectBoundingBox boundary = new RectBoundingBox(new P2d(X_WORLD, Y_WORLD), WORLD_WIDTH, WORLD_HEIGHT);
+        RectBoundingBox boundary = new RectBoundingBox(new P2d(WORLD_WIDTH/2, WORLD_HEIGHT/2), WORLD_WIDTH, WORLD_HEIGHT);
         WorldImpl w = new WorldImpl(boundary);
 
         //TODO: Add actual parameters.
