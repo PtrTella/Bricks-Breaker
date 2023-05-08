@@ -1,6 +1,6 @@
 package brickbreaker;
 
-import javafx.application.Application;
+//import javafx.application.Application;
 
 public class App {
     private App() { }

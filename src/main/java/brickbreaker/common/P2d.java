@@ -4,7 +4,7 @@ package brickbreaker.common;
 /**
  * 2-dimensional point
  */
-public class P2d implements java.io.Serializable {
+public class P2d {
 
     private double x;
     private double y;
@@ -22,24 +22,24 @@ public class P2d implements java.io.Serializable {
         return this.y;
     }
 
-    public P2d sum(V2d v){
-        return new P2d(x+v.getX(), y+v.getY());
+    public P2d sum(V2d v) {
+        return new P2d(x + v.getX(), y + v.getY());
     }
 
-    public V2d sub(P2d v){
-        return new V2d(x-v.x, y-v.y);
+    public V2d sub(P2d v) {
+        return new V2d(x - v.x, y - v.y);
     }
 
-    public String toString(){
+    public String toString() {
         return "P2d("+x+","+y+")";
     }
     
-    public Double orizDist(P2d xp){
-        return x-xp.getX();
+    public Double orizDist(P2d xp) {
+        return x - xp.getX();
     }
 
-    public Double vertDist(P2d yp){
-        return y-yp.getY();
+    public Double vertDist(P2d yp) {
+        return y - yp.getY();
     }
 
 }

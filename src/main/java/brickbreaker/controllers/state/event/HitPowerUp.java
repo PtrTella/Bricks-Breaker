@@ -4,7 +4,7 @@ import brickbreaker.model.GameState;
 import brickbreaker.model.gameObjects.power.PowerUp;
 import brickbreaker.model.gameObjects.power.applicator.PowerUpApplicator;
 
-public class HitPowerUp implements HitObjects{
+public class HitPowerUp implements HitObjects {
 
     private PowerUpApplicator applicator;
     private PowerUp picked;

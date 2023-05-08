@@ -9,7 +9,7 @@ public class HitBar implements HitObjects {
 
     private Ball ball;
 
-    public HitBar(Ball ball){
+    public HitBar(Ball ball) {
         this.ball = ball;
     }
 
