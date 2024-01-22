@@ -1,0 +1,34 @@
+[
+  {
+    "level": 0,
+    "scores": {
+      "Luca": 100,
+      "Pietro": 200,
+      "Francesco": 300
+    }
+  },
+  {
+    "level": 1,
+    "scores": {
+      "Luca": 100,
+      "Pietro": 200,
+      "Francesco": 300
+    }
+  },
+  {
+    "level": 2,
+    "scores": {
+      "Luca": 100,
+      "Pietro": 200,
+      "Francesco": 300
+    }
+  },
+  {
+    "level": 3,
+    "scores": {
+      "Luca": 100,
+      "Pietro": 200,
+      "Francesco": 300
+    }
+  }
+]

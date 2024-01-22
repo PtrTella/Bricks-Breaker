@@ -1,13 +1,37 @@
 package brickbreaker.view;
 
+import javafx.stage.Stage;
 import brickbreaker.controllers.Controller;
 
+/**
+ * Implements the {@link View} interface.
+ */
 public abstract class ViewImpl implements View {
 
-    private Controller currentController;
+    private Stage currentStage;
+    private Controller controller;
 
-    public ViewImpl(final Controller controllerToAttach) {
-        this.setController(controllerToAttach);
+    /**
+     * Method to get the current stage.
+     * 
+     * @return the current stage
+     */
+    public Stage getStage() {
+        return this.currentStage;
+    }
+
+    /**
+     * Method to set the current stage.
+     * 
+     * @param stageToSet the stage to set
+     */
+    public void setStage(final Stage stageToSet) {
+        stageToSet.setOnCloseRequest(event -> {
+            this.controller.getUserController().saveUsers();
+            this.controller.getRankController().saveRanks();
+            System.exit(0);
+        });
+        this.currentStage = stageToSet;
     }
 
     /**
@@ -15,7 +39,7 @@ public abstract class ViewImpl implements View {
      */
     @Override
     public void setController(final Controller controllerToAttach) {
-        this.currentController = controllerToAttach;
+        this.controller = controllerToAttach;
     }
 
     /**
@@ -23,7 +47,7 @@ public abstract class ViewImpl implements View {
      */
     @Override
     public Controller getController() {
-        return this.currentController;
+        return this.controller;
     }
 
     /**

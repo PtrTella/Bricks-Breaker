@@ -12,7 +12,7 @@ plugins {
      * The runnable jar will be found in build/libs/projectname-all.jar
      */
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("org.danilopianini.gradle-java-qa") version "1.5.0"
+    //id("org.danilopianini.gradle-java-qa") version "1.5.0"
 }
 
 repositories {
@@ -43,11 +43,16 @@ dependencies {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
         }
     }
+    implementation("com.google.code.gson:gson:2.8.8")
 
     val jUnitVersion = "5.9.2"
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
 
 tasks.withType<Test> {
@@ -59,3 +64,11 @@ application {
     // Define the main class for the application
     mainClass.set("brickbreaker.App")
 }
+
+tasks.jar {
+    val mainResources = sourceSets.getByName("main").resources
+    from(mainResources) {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+}
+

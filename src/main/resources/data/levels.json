@@ -1,0 +1,18 @@
+[
+  {
+    "level": 0,
+    "scores": {
+      "Luca": 2032,
+      "Pietro": 1984,
+      "Francesco": 1920
+    }
+  },
+  {
+    "level": 1,
+    "scores": {
+      "Luca": 1111,
+      "Pietro": 3333,
+      "Francesco": 2222
+    }
+  }
+]

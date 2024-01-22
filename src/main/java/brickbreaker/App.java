@@ -1,14 +1,20 @@
 package brickbreaker;
 
-//import javafx.application.Application;
+import brickbreaker.controllers.Setup;
+import javafx.application.Application;
 
-public class App {
+/**
+ * Launcher class.
+ */
+public final class App {
+
     private App() { }
+
     /**
-     * Main application entry-point.
-     * @param args
+     * Main method.
+     * @param args Arguments.
      */
-    public static void main(final String[] args) throws Exception {
-        //Application.launch(JavaFXApp.class, args);
+    public static void main(final String[] args) {
+        Application.launch(Setup.class, args);
     }
 }

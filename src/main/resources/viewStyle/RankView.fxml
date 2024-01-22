@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" minHeight="500.0" minWidth="510.0" prefHeight="500.0" prefWidth="631.0"
+   style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="brickbreaker.view.RanksView">
+   <children>
+      <VBox fx:id="vbContainer" alignment="CENTER" prefHeight="614.0" prefWidth="604.0"
+         spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgBack" fitHeight="61.0" fitWidth="83.0" onMouseClicked="#clickBack"
+               pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets right="500.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <ImageView fx:id="imgTitle" fitHeight="47.0" fitWidth="432.0" pickOnBounds="true"
+               preserveRatio="true" />
+            <Label fx:id="lblTitle" alignment="CENTER" prefHeight="70.0" prefWidth="264.0"
+               text="Label" textAlignment="CENTER" textFill="WHITE" />
+            <HBox fx:id="hbTable" alignment="CENTER" prefHeight="324.0" prefWidth="600.0">
+               <children>
+                  <TableView fx:id="currentRank" prefHeight="287.0" prefWidth="495.0">
+                     <columns>
+                        <TableColumn fx:id="columnPlayers" prefWidth="250.00000762939453"
+                           text="Player" />
+                        <TableColumn fx:id="columnScores" prefWidth="312.6666564941406" text="Score" />
+                     </columns>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox fx:id="hbButtons" alignment="CENTER" prefHeight="59.0" prefWidth="599.0">
+               <children>
+                  <ImageView fx:id="imgPrevious" fitHeight="57.0" fitWidth="199.0"
+                     onMouseClicked="#clickPrevious" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgChange" fitHeight="64.0" fitWidth="200.0"
+                     onMouseClicked="#changeMode" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgNext" fitHeight="67.0" fitWidth="200.0"
+                     onMouseClicked="#clickNext" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
