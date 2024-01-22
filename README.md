@@ -1,9 +1,9 @@
 # Bricks-Breaker
 
 This software is developed by:
+ - [Pietro Tellarini]()
  - [Luca Bighini]()
  - [Francesco Agostinelli]()
- - [Pietro Tellarini]()
 ### Building and running the project
 You can build using Gradle:
 
